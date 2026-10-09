@@ -1,0 +1,37 @@
+.editor-styles-wrapper {
+  background: #0c1019;
+  color: #f0f1f6;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.8;
+  padding: 25px;
+}
+.editor-styles-wrapper .wp-block {
+  max-width: 740px;
+}
+.editor-styles-wrapper h1,
+.editor-styles-wrapper h2,
+.editor-styles-wrapper h3 {
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+}
+.editor-styles-wrapper p,
+.editor-styles-wrapper li {
+  color: #a5adbe;
+}
+.editor-styles-wrapper a {
+  color: #b7abfa;
+  text-underline-offset: 4px;
+}
+.editor-styles-wrapper code {
+  background: #22283b;
+  color: #cec4ff;
+  padding: 3px 5px;
+}
+.editor-styles-wrapper blockquote {
+  border-left: 2px solid #b7abfa;
+  padding-left: 22px;
+}
+.editor-styles-wrapper figcaption {
+  color: #a5adbe;
+  font-size: 13px;
+}

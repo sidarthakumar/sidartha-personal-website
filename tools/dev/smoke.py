@@ -178,9 +178,13 @@ def html_ok(response):
 
 
 def homepage(client):
+    # The installed theme may intentionally change the site title. Validate the
+    # configured title instead of requiring the original synthetic branding.
+    title = compose('run', '--rm', '-T', 'cli', 'option', 'get', 'blogname')
+    require(bool(title), 'configured site title is missing')
     response = client.request('/')
     html_ok(response)
-    require('Local WordPress Development' in response.body, 'expected homepage title missing')
+    require(title in response.body, 'expected homepage title missing')
 
 
 def rest(client):

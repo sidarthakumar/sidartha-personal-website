@@ -60,9 +60,10 @@ The suite checks versions, PHP mysqli, a direct `SELECT 1`, local URLs and
 environment, external HTTP isolation, the synthetic administrator capability, homepage content, REST
 content, administrator cookies and dashboard HTML, and rejection of an incorrect
 password and anonymous dashboard access. Its explicit fixture is the existing
-synthetic site title and `Hello world!` post. If intentionally changing those
-fixtures later, update the assertions through review; never reset content to
-satisfy the test.
+`Hello world!` post. The homepage assertion now reads the configured site title,
+so activating the personal website does not require retaining synthetic branding.
+If intentionally changing fixtures later, update the assertions through review;
+never reset content to satisfy the test.
 
 Each check prints PASS/FAIL and elapsed seconds. Commands and ordinary HTTP
 operations have 30-second and 10-second limits respectively; each dashboard GET
@@ -142,8 +143,9 @@ expansion, core edits, cache clearing, or data reset is used.
 
 ## Source, backups, and rollback
 
-The intended source consists of `.gitignore`, `AGENTS.md`, this documentation,
-the canonical smoke script and its regression tests. Runtime data and private
+The environment foundation consists of `.gitignore`, `AGENTS.md`, this documentation,
+the canonical smoke script and its regression tests. Website components and their
+reviewed installable packages are documented below. Runtime data and private
 configuration remain outside Git. `.gitignore` covers secrets, local runtime,
 databases, logs, and sensitive backups while allowing theme/plugin source and
 ordinary installable ZIPs in `dist/` or `releases/`. It is a guardrail, not a secret
@@ -178,3 +180,47 @@ If services cannot start, check local daemon access, Compose service health and
 redacted diagnostics, then verify existing bind mounts and installation status.
 Do not interpret a connection timeout as permission to initialize a new site.
 Report a blocked or ambiguous state instead of performing destructive recovery.
+
+## Website source and local activation
+
+The website source lives under `wp-content/themes/sidartha` and
+`wp-content/plugins/sidartha-portfolio` in the repository. The following workflow
+targets only the existing loopback sandbox. Preserve a private database/settings
+rollback snapshot before activation or importing initial content.
+
+```sh
+cd /workspace/sidartha-personal-website
+python3 tools/dev/sync-sandbox.py
+cd /workspace/local-wordpress
+export DOCKER_HOST=unix:///var/run/docker.sock
+unset DOCKER_CONTEXT DOCKER_TLS DOCKER_TLS_VERIFY DOCKER_CERT_PATH
+docker compose run --rm -T cli plugin activate sidartha-portfolio
+docker compose run --rm -T cli theme activate sidartha
+docker compose run --rm -T cli --user=developer skp seed --publish-local
+```
+
+The source sync normalizes only copied source files to `0644`, never secret files,
+and performs no deletion. The importer adds truthful starter content once, leaves
+Privacy as a draft, and preserves all original content. Its explicit local mode
+sets the site title, reading options, menu and permalinks for the preview. Outside
+`WP_ENVIRONMENT_TYPE=local`, the publishing mode refuses to run; the administrator
+UI instead creates drafts for owner review. Read the deployment guide before any
+future non-local workflow; production access is not authorized here.
+
+Run the website suites after activating:
+
+```sh
+cd /workspace/sidartha-personal-website
+python3 tools/dev/check-website.py
+python3 tools/dev/check-http-security.py
+python3 tools/dev/check-browser.py \
+  --axe /tmp/skp-browser-a11y/node_modules/axe-core/axe.min.js \
+  --output /tmp/skp-browser-report
+```
+
+For browser QA, this cloud environment provides Python Playwright and
+`/usr/bin/chromium`. The pinned temporary checker can be installed with
+`npm install --prefix /tmp/skp-browser-a11y --ignore-scripts --no-audit --no-fund axe-core@4.10.3`
+using the managed proxy/network policy. It is injected only during local tests,
+not loaded by the theme. A `--no-sandbox` browser flag is confined to headless QA
+inside the isolated container; it does not change WordPress or production settings.
