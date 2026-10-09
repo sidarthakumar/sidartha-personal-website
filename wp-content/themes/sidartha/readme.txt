@@ -2,7 +2,7 @@
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.1
-Version: 1.0.0
+Version: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -37,3 +37,6 @@ The optional theme screenshot shows the local development website, not a client.
 
 See repository docs/website-installation.md, docs/content-editing.md,
 docs/website-security.md and docs/website-test-report.md for the complete handoff.
+Version 1.0.1 refines mobile typography and the compact identity card, exposes all
+editable learning groups on the homepage, and clarifies the two main actions.
+See docs/design-refinement-task4.md for new screenshots and responsive test evidence.

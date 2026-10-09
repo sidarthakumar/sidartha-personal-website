@@ -5,6 +5,14 @@ if ( ! defined( 'WP_CLI' ) || ! WP_CLI || 'local' !== wp_get_environment_type() 
 }
 
 require_once ABSPATH . 'wp-admin/includes/plugin.php';
+// Exercise native writes without persisting changes to existing development records.
+// Refuse non-transactional tables or persistent caches rather than risk partial rollback.
+global $wpdb;
+$non_transactional = $wpdb->get_var( $wpdb->prepare( 'SELECT COUNT(*) FROM information_schema.TABLES WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME LIKE %s AND ENGINE != %s', $wpdb->esc_like( $wpdb->prefix ) . '%', 'InnoDB' ) );
+if ( null === $non_transactional || '0' !== (string) $non_transactional || wp_using_ext_object_cache() || false === $wpdb->query( 'START TRANSACTION' ) ) {
+	WP_CLI::error( 'FAIL: integration tests require transactional tables and a non-persistent object cache' );
+}
+register_shutdown_function( function () use ( $wpdb ) { $wpdb->query( 'ROLLBACK' ); } );
 global $checks;
 $checks = 0;
 function skp_test( $condition, $label ) {
@@ -15,6 +23,15 @@ function skp_test( $condition, $label ) {
 }
 
 $administrator = get_current_user_id();
+// Override only request-local option reads to prove saved owner copy takes precedence.
+$profile_before = get_option( 'skp_profile', array() );
+$owner_profile = function () { return array( 'headline' => 'Owner-selected headline', 'introduction' => 'Owner-selected introduction', 'focus_label' => 'Owner-selected learning label' ); };
+add_filter( 'pre_option_skp_profile', $owner_profile );
+skp_test( 'Owner-selected headline' === \Sidartha\Portfolio\profile( 'headline' ) && 'Owner-selected introduction' === \Sidartha\Portfolio\profile( 'introduction' ) && 'Owner-selected learning label' === \Sidartha\Portfolio\profile( 'focus_label' ), 'saved owner introduction and learning labels override new defaults' );
+remove_filter( 'pre_option_skp_profile', $owner_profile );
+$new_labels = \Sidartha\Portfolio\sanitize_profile( array( 'focus_label' => '<script>bad()</script>Exploring', 'focus_heading' => 'Editable learning areas', 'focus_introduction' => 'Editable learning direction' ) );
+skp_test( false === strpos( $new_labels['focus_label'], '<' ) && 'Editable learning areas' === $new_labels['focus_heading'] && 'Editable learning direction' === $new_labels['focus_introduction'], 'learning section settings are editable and sanitized' );
+skp_test( $profile_before === get_option( 'skp_profile' ), 'profile validation and default reads do not overwrite saved settings' );
 skp_test( 'sidartha' === get_stylesheet(), 'custom theme active' );
 skp_test( is_plugin_active( 'sidartha-portfolio/sidartha-portfolio.php' ), 'companion plugin active' );
 $pages = get_option( 'skp_pages', array() );
@@ -113,4 +130,5 @@ $filtered = new WP_Query( array_merge( $filter_args, array( 'meta_query' => skp_
 skp_test( 1 === $filtered->post_count, 'Planned filter discovers planned project content' );
 $_POST = array();
 skp_test( 'draft' === get_post_status( $fixture ), 'QA fixture remains unpublished; no existing content removed' );
+skp_test( false !== $wpdb->query( 'ROLLBACK' ), 'integration test writes rolled back without altering existing records' );
 WP_CLI::success( $checks . ' website integration/security checks passed.' );

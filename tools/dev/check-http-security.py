@@ -32,6 +32,9 @@ with sync_playwright() as automation:
     response = page.goto(BASE + '/wp-admin/options-general.php?page=skp-profile', wait_until='networkidle')
     require(response.status == 200 and page.locator('#skp-name').input_value() == 'Sidartha Kumar', 'native profile settings UI did not load')
     require(page.locator('#skp-public_email').input_value() == '', 'unexpected initial public email')
+    for field in ('headline', 'introduction', 'focus_label', 'focus_heading', 'focus_introduction'):
+        require(page.locator('#skp-' + field).is_editable(), 'native homepage setting is not editable')
+    print('PASS native headline, introduction, and learning section controls remain editable')
     page.get_by_role('button', name='Choose from media library').click()
     page.locator('.media-modal').wait_for(state='visible')
     page.locator('.media-modal-close').click()

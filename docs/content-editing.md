@@ -7,6 +7,7 @@ for structured collections. The block editor works with the provided editor styl
 | What to change | Where |
 | --- | --- |
 | Public name, homepage label/headline/introduction | Settings → Portfolio profile |
+| Homepage learning section label, heading, introduction | Settings → Portfolio profile |
 | Profile photograph | Settings → Portfolio profile → Choose from media library |
 | Photograph alt text/crop/caption | Media → select the image |
 | Homepage editorial note next to featured project | Pages → Home |
@@ -27,6 +28,17 @@ The homepage feature sections and their navigational labels are presentation
 components of the theme. Their content comes from the editable settings, Home
 page, and published collections. Template changes belong in source review; no
 business biography, contact address, or proficiency score needs a template edit.
+
+The refined homepage presents **all published skill groups**, including their native
+titles, topics, summaries, and stages, immediately after the introduction. Edit those
+specializations under Skills & Technologies; there is no separate hardcoded list to
+keep in sync. The learning section's surrounding copy is editable under Portfolio
+profile. Current groups are learning focuses, not proficiency claims.
+
+Version 1.0.1 changes only the fallback homepage introduction and adds fallback
+learning-section copy. It does not migrate or overwrite saved options or records.
+Any saved owner headline/introduction takes precedence. In this sandbox those fields
+were unset, so the approved new defaults appear without a database write.
 
 ## Projects
 

@@ -18,6 +18,7 @@ def require(condition, message):
         raise AssertionError(message)
 
 checks = []
+hero_metrics = []
 
 with sync_playwright() as automation:
     browser = automation.chromium.launch(executable_path='/usr/bin/chromium', headless=True, args=['--no-sandbox'])
@@ -37,7 +38,7 @@ with sync_playwright() as automation:
     errors = []
     page.on('pageerror', lambda error: errors.append(type(error).__name__))
     pages = ['/', '/about/', '/skills/', '/projects/', '/journey/', '/insights/', '/contact/']
-    for width, height in ((1440, 1000), (820, 1180), (390, 844)):
+    for width, height in ((1440, 1000), (1024, 900), (768, 1024), (430, 932), (390, 844), (360, 800), (320, 740)):
         page.set_viewport_size({'width': width, 'height': height})
         for path in pages:
             start = time.monotonic()
@@ -59,7 +60,34 @@ with sync_playwright() as automation:
             require(not result, f'{path}: accessibility findings at {width}px: {[item["id"] for item in result]}')
             checks.append({'path': path, 'width': width, 'status': 'PASS', 'seconds': round(time.monotonic() - start, 3)})
             if path == '/':
+                require(page.locator('.hero h1').inner_text() == 'Building practical technology.\nOne project at a time.', 'approved default headline missing')
+                require(page.locator('#learning-focus .skill-card').count() == 6, 'homepage must present all six published learning groups')
+                require(page.locator('.hero-actions a').all_text_contents()[0].strip() == 'View projects', 'primary action wording incorrect')
+                for name, path_target in (('View projects', '/projects/'), ('About my journey', '/about/')):
+                    link = page.get_by_role('link', name=name, exact=True)
+                    require(link.get_attribute('href') == BASE + path_target, 'hero action target incorrect')
+                    require(link.bounding_box()['height'] >= 44, 'hero action touch target too small')
+                metrics = page.evaluate('''() => ({width:innerWidth,
+                    card_height:Math.round(document.querySelector('.identity-card').getBoundingClientRect().height),
+                    next_section_top:Math.round(document.querySelector('#learning-focus').getBoundingClientRect().top+scrollY),
+                    intro_font:parseFloat(getComputedStyle(document.querySelector('.hero-intro')).fontSize),
+                    smallest_label:Math.min(...[...document.querySelectorAll('.hero .eyebrow, .identity-card .small-label, .edition, .identity-status, .skill-card .small-label, .skill-card .tags span')].map(n=>parseFloat(getComputedStyle(n).fontSize)))})''')
+                require(metrics['intro_font'] >= 16 and metrics['smallest_label'] >= 12, 'homepage typography is too small')
+                if width <= 430:
+                    require(metrics['card_height'] <= 240, 'phone identity card is too tall')
+                    require(metrics['next_section_top'] <= 1020, 'learning section is excessively far below the hero')
+                hero_metrics.append(metrics)
                 page.screenshot(path=str(args.output / f'home-{width}.png'), full_page=True)
+                page.screenshot(path=str(args.output / f'home-{width}-viewport.png'))
+                if width <= 768:
+                    toggle = page.get_by_role('button', name='Menu')
+                    toggle.focus(); page.keyboard.press('Enter')
+                    require(toggle.get_attribute('aria-expanded') == 'true', 'mobile menu failed to open')
+                    page.keyboard.press('Tab')
+                    require(page.evaluate('document.activeElement.closest("#primary-navigation") !== null'), 'mobile links unreachable by keyboard')
+                    require(page.evaluate('getComputedStyle(document.activeElement).outlineStyle !== "none"'), 'keyboard focus indicator missing')
+                    page.keyboard.press('Escape')
+                    require(toggle.get_attribute('aria-expanded') == 'false', 'mobile menu failed to close')
                 if width == 1440:
                     page.screenshot(path=str(args.output / 'home-desktop-viewport.png'))
             if width == 1440 and path in ('/projects/', '/about/', '/journey/'):
@@ -121,5 +149,5 @@ with sync_playwright() as automation:
     no_js.close()
     browser.close()
 
-(args.output / 'results.json').write_text(json.dumps({'pages': checks, 'javascript_errors': len(errors), 'external_requests': len(blocked), 'interactions': 'PASS', 'no_javascript_navigation': 'PASS'}, indent=2))
+(args.output / 'results.json').write_text(json.dumps({'pages': checks, 'hero_metrics': hero_metrics, 'javascript_errors': len(errors), 'external_requests': len(blocked), 'interactions': 'PASS', 'no_javascript_navigation': 'PASS'}, indent=2))
 print(f'PASS: {len(checks)} responsive page/axe checks plus interaction/security checks; screenshots and results saved locally')

@@ -4,7 +4,7 @@
   --panel-light: #171e2d;
   --ink: #f0f1f6;
   --muted: #a5adbe;
-  --faint: #8f9ab0;
+  --faint: #a0abc0;
   --accent: #b7abfa;
   --blue: #93b9e9;
   --line: #283040;
@@ -122,7 +122,7 @@ main:focus {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.5;
   font-weight: 600;
   letter-spacing: 0.17em;
@@ -131,7 +131,7 @@ main:focus {
   margin-bottom: 20px;
 }
 .small-label {
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.5;
   letter-spacing: 0.13em;
   text-transform: uppercase;
@@ -309,7 +309,7 @@ main:focus {
 }
 .brand-name small {
   display: block;
-  font-size: 8px;
+  font-size: 12px;
   letter-spacing: 0.17em;
   color: var(--muted);
   margin-top: 7px;
@@ -369,7 +369,7 @@ main:focus {
   padding-block: 92px 80px;
 }
 .hero .eyebrow {
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 0.13em;
   margin-bottom: 26px;
 }
@@ -396,20 +396,6 @@ main:focus {
   gap: 12px;
   margin-top: 32px;
 }
-.hero-footnote {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 34px;
-  font-size: 10px;
-  color: var(--faint);
-  letter-spacing: 0.01em;
-}
-.short-line {
-  height: 1px;
-  width: 25px;
-  background: #64617e;
-}
 .identity-card {
   border: 1px solid #363748;
   border-radius: 15px;
@@ -427,11 +413,11 @@ main:focus {
   z-index: 2;
 }
 .identity-top .small-label {
-  font-size: 8px;
+  font-size: 12px;
   color: #b6b3cb;
 }
 .edition {
-  font-size: 8px;
+  font-size: 12px;
   letter-spacing: 0.09em;
   color: var(--faint);
 }
@@ -512,7 +498,7 @@ main:focus {
 }
 .identity-description {
   display: block;
-  font-size: 11px;
+  font-size: 12px;
   color: var(--muted);
   margin-top: 4px;
 }
@@ -529,7 +515,7 @@ main:focus {
   gap: 10px;
   border-top: 1px solid #34394d;
   padding: 15px 26px;
-  font-size: 9px;
+  font-size: 12px;
   letter-spacing: 0.03em;
   color: var(--muted);
 }
@@ -543,39 +529,6 @@ main:focus {
   height: 100%;
   object-fit: cover;
   object-position: center;
-}
-.focus-strip {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  min-height: 73px;
-  gap: 20px;
-}
-.focus-strip > span:first-child {
-  font-size: 9px;
-  letter-spacing: 0.13em;
-  color: var(--faint);
-}
-.focus-strip ul {
-  display: flex;
-  align-items: center;
-  gap: 50px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  font-size: 13px;
-  color: #c5cbda;
-}
-.focus-strip li + li:before {
-  content: "/";
-  margin-right: 50px;
-  color: #666582;
-}
-.strip-star {
-  color: var(--accent);
-  font-size: 25px;
 }
 /* Project editorial cards. */
 .featured-grid {
@@ -732,7 +685,7 @@ main:focus {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  font-size: 9px;
+  font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   color: #c5bafd;
@@ -759,7 +712,7 @@ main:focus {
   border-color: #2d5849;
 }
 .card-topline .small-label {
-  font-size: 8px;
+  font-size: 12px;
 }
 .project-body .card-title {
   font-size: 24px;
@@ -767,7 +720,7 @@ main:focus {
   margin-bottom: 12px;
 }
 .project-body > p {
-  font-size: 13px;
+  font-size: 16px;
   line-height: 1.8;
   margin-bottom: 20px;
 }
@@ -777,7 +730,7 @@ main:focus {
   gap: 7px;
 }
 .tags > span {
-  font-size: 9px;
+  font-size: 12px;
   line-height: 1.5;
   border: 1px solid #333c4d;
   border-radius: 4px;
@@ -800,7 +753,7 @@ main:focus {
   );
 }
 .note-index {
-  font-size: 9px;
+  font-size: 12px;
   letter-spacing: 0.14em;
   color: var(--faint);
 }
@@ -817,7 +770,7 @@ main:focus {
 }
 .work-note p,
 .work-note .prose {
-  font-size: 13px;
+  font-size: 16px;
   line-height: 1.85;
 }
 .work-note > p {
@@ -851,7 +804,7 @@ main:focus {
 }
 .skill-card > .small-label {
   display: block;
-  font-size: 8px;
+  font-size: 12px;
   letter-spacing: 0.09em;
   margin-bottom: 10px;
 }
@@ -862,7 +815,7 @@ main:focus {
   margin-bottom: 13px;
 }
 .skill-card p {
-  font-size: 12px;
+  font-size: 16px;
   line-height: 1.85;
   margin-bottom: 25px;
 }
@@ -873,7 +826,7 @@ main:focus {
   gap: 6px;
 }
 .skill-card .tags > span {
-  font-size: 8px;
+  font-size: 12px;
 }
 .journey-preview {
   display: grid;
@@ -887,7 +840,7 @@ main:focus {
   max-width: 350px;
 }
 .journey-preview .section-intro {
-  font-size: 14px;
+  font-size: 16px;
   max-width: 350px;
 }
 .timeline {
@@ -920,12 +873,12 @@ main:focus {
   display: flex;
   align-items: center;
   gap: 20px;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.6;
   color: var(--accent);
 }
 .timeline-date .small-label {
-  font-size: 8px;
+  font-size: 12px;
 }
 .timeline h3 {
   font-size: 20px;
@@ -933,7 +886,7 @@ main:focus {
   margin-bottom: 8px;
 }
 .timeline .prose {
-  font-size: 13px;
+  font-size: 16px;
   line-height: 1.9;
 }
 .timeline .prose p {
@@ -957,7 +910,7 @@ main:focus {
   align-items: center;
   gap: 17px;
   color: var(--faint);
-  font-size: 10px;
+  font-size: 12px;
   line-height: 1.7;
   margin-bottom: 23px;
 }
@@ -973,12 +926,12 @@ main:focus {
   max-width: 400px;
 }
 .article-card p {
-  font-size: 13px;
+  font-size: 16px;
   line-height: 1.85;
   margin-bottom: 25px;
 }
 .article-card .text-link {
-  font-size: 11px;
+  font-size: 12px;
 }
 .article-card img {
   aspect-ratio: 1.8;
@@ -999,7 +952,7 @@ main:focus {
   gap: 45px;
 }
 .contact-band .eyebrow {
-  font-size: 9px;
+  font-size: 12px;
   margin-bottom: 15px;
 }
 .contact-band h2 {
@@ -1008,7 +961,7 @@ main:focus {
   line-height: 1.15;
 }
 .contact-band p:not(.eyebrow) {
-  font-size: 13px;
+  font-size: 16px;
   margin-top: 14px;
 }
 .contact-band .button {
@@ -1033,7 +986,7 @@ main:focus {
   color: var(--accent);
 }
 .footer-top p {
-  font-size: 11px;
+  font-size: 12px;
   margin-top: 6px;
 }
 .footer-links {
@@ -1041,7 +994,7 @@ main:focus {
   align-items: center;
   flex-wrap: wrap;
   gap: 26px;
-  font-size: 11px;
+  font-size: 12px;
   color: #c2c8d6;
 }
 .footer-links .icon {
@@ -1064,7 +1017,7 @@ main:focus {
   align-items: center;
   gap: 20px;
   padding-block: 20px 25px;
-  font-size: 9px;
+  font-size: 12px;
   color: var(--faint);
 }
 /* Inner pages and native WordPress content. */
@@ -1078,7 +1031,7 @@ main:focus {
   max-width: 790px;
 }
 .page-heading .eyebrow {
-  font-size: 10px;
+  font-size: 12px;
   margin-bottom: 24px;
 }
 .page-intro {
@@ -1208,7 +1161,7 @@ main:focus {
   margin-bottom: 15px;
 }
 .about-aside > p:not(.eyebrow) {
-  font-size: 13px;
+  font-size: 16px;
   max-width: 230px;
 }
 .about-aside .text-link {
@@ -1242,7 +1195,7 @@ main:focus {
   margin-bottom: 20px;
 }
 .journey-layout .journey-intro > p:not(.eyebrow) {
-  font-size: 13px;
+  font-size: 16px;
   max-width: 280px;
 }
 .journey-layout .timeline {
@@ -1256,7 +1209,7 @@ main:focus {
   font-size: 24px;
 }
 .journey-layout .timeline .prose {
-  font-size: 15px;
+  font-size: 16px;
 }
 .projects-grid {
   display: grid;
@@ -1311,10 +1264,10 @@ main:focus {
   justify-content: space-between;
   align-items: center;
   margin: 23px 0;
-  font-size: 11px;
+  font-size: 12px;
 }
 .results-line .small-label {
-  font-size: 8px;
+  font-size: 12px;
 }
 .empty-state {
   grid-column: 1/-1;
@@ -1329,7 +1282,7 @@ main:focus {
   margin-bottom: 18px;
 }
 .empty-state p {
-  font-size: 14px;
+  font-size: 16px;
   margin: 0 auto 22px;
   max-width: 480px;
 }
@@ -1349,7 +1302,7 @@ main:focus {
   border-radius: 14px;
 }
 .contact-card .eyebrow {
-  font-size: 9px;
+  font-size: 12px;
   margin-bottom: 16px;
 }
 .contact-card h2 {
@@ -1357,11 +1310,11 @@ main:focus {
   margin-bottom: 24px;
 }
 .contact-card > p:not(.eyebrow) {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.85;
 }
 .contact-card .contact-hint {
-  font-size: 11px !important;
+  font-size: 14px !important;
   margin-top: 20px;
   padding-top: 20px;
   border-top: 1px solid var(--line);
@@ -1410,7 +1363,7 @@ main:focus {
   border: 1px solid var(--line);
   border-radius: 5px;
   padding: 5px 12px;
-  font-size: 11px;
+  font-size: 12px;
   color: var(--muted);
 }
 .project-links {
@@ -1493,7 +1446,7 @@ main:focus {
     gap: 17px;
   }
   .brand-name small {
-    font-size: 7px;
+    font-size: 12px;
   }
   .hero {
     gap: 35px;
@@ -1502,25 +1455,13 @@ main:focus {
     font-size: 53px;
   }
   .hero-intro {
-    font-size: 14px;
-  }
-  .hero-footnote {
-    font-size: 9px;
+    font-size: 16px;
   }
   .identity-top {
     padding: 18px;
   }
   .identity-top .small-label,
   .edition {
-    font-size: 7px;
-  }
-  .focus-strip ul {
-    gap: 25px;
-  }
-  .focus-strip li + li:before {
-    margin-right: 25px;
-  }
-  .focus-strip ul {
     font-size: 12px;
   }
   .journey-preview {
@@ -1619,22 +1560,18 @@ main:focus {
     font-size: 45px;
   }
   .hero .eyebrow {
-    font-size: 8px;
+    font-size: 12px;
   }
   .hero-intro {
-    font-size: 13px;
+    font-size: 16px;
   }
   .hero-actions {
     gap: 8px;
   }
   .hero .button {
-    font-size: 11px;
+    font-size: 12px;
     gap: 12px;
     padding-inline: 15px;
-  }
-  .hero-footnote {
-    font-size: 9px;
-    max-width: 270px;
   }
   .identity-top {
     flex-direction: column;
@@ -1662,27 +1599,14 @@ main:focus {
     font-size: 20px;
   }
   .identity-description {
-    font-size: 9px;
+    font-size: 12px;
   }
   .identity-bottom {
     padding: 18px;
   }
   .identity-status {
     padding: 13px 18px;
-    font-size: 8px;
-  }
-  .focus-strip > span:first-child {
-    font-size: 8px;
-  }
-  .focus-strip ul {
-    gap: 15px;
-    font-size: 10px;
-  }
-  .focus-strip li + li:before {
-    margin-right: 15px;
-  }
-  .strip-star {
-    font-size: 20px;
+    font-size: 12px;
   }
   .section {
     padding-block: 65px;
@@ -1691,7 +1615,7 @@ main:focus {
     font-size: 32px;
   }
   .section-heading > .text-link {
-    font-size: 11px;
+    font-size: 12px;
   }
   .featured-grid {
     gap: 22px;
@@ -1716,8 +1640,8 @@ main:focus {
   .project-body {
     padding: 22px;
   }
-  .card-topline .small-label {
-    display: none;
+  .card-topline {
+    flex-wrap: wrap;
   }
   .project-body .card-title {
     font-size: 22px;
@@ -1726,8 +1650,8 @@ main:focus {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .home .skills-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 13px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
   }
   .home .skill-card {
     padding: 22px 18px;
@@ -1736,16 +1660,16 @@ main:focus {
     font-size: 19px;
   }
   .home .skill-card p {
-    font-size: 11px;
+    font-size: 16px;
   }
   .home .skill-card .tags > span {
-    font-size: 7px;
+    font-size: 12px;
   }
   .journey-preview {
     gap: 45px;
   }
   .journey-preview .section-intro {
-    font-size: 13px;
+    font-size: 16px;
   }
   .contact-band {
     gap: 25px;
@@ -1755,7 +1679,7 @@ main:focus {
     font-size: 27px;
   }
   .contact-band .button {
-    font-size: 11px;
+    font-size: 12px;
     gap: 12px;
     padding: 12px 16px;
   }
@@ -1774,7 +1698,7 @@ main:focus {
     max-width: 650px;
   }
   .page-intro {
-    font-size: 15px;
+    font-size: 16px;
   }
   .project-filters {
     grid-template-columns: 1fr 1fr;
@@ -1822,7 +1746,7 @@ main:focus {
     font-size: 12px;
   }
   .brand-name small {
-    font-size: 7px;
+    font-size: 12px;
   }
   .brand-mark {
     width: 38px;
@@ -1843,7 +1767,7 @@ main:focus {
     width: 100%;
   }
   .hero .eyebrow {
-    font-size: 8px;
+    font-size: 12px;
     letter-spacing: 0.1em;
     gap: 9px;
     margin-bottom: 23px;
@@ -1856,7 +1780,7 @@ main:focus {
     max-width: 460px;
   }
   .hero-intro {
-    font-size: 14px;
+    font-size: 16px;
     line-height: 1.85;
     max-width: 440px;
   }
@@ -1865,7 +1789,7 @@ main:focus {
     gap: 6px;
   }
   .hero .button {
-    font-size: 11px;
+    font-size: 12px;
     padding: 12px 15px;
     gap: 12px;
     min-height: 47px;
@@ -1873,11 +1797,6 @@ main:focus {
   .hero .button-quiet {
     padding-left: 12px;
     padding-right: 0;
-  }
-  .hero-footnote {
-    margin-top: 23px;
-    font-size: 8px;
-    max-width: 100%;
   }
   .identity-card {
     width: 100%;
@@ -1889,7 +1808,7 @@ main:focus {
   }
   .identity-top .small-label,
   .edition {
-    font-size: 7px;
+    font-size: 12px;
   }
   .identity-art {
     height: 230px;
@@ -1916,37 +1835,11 @@ main:focus {
     font-size: 23px;
   }
   .identity-description {
-    font-size: 10px;
+    font-size: 12px;
   }
   .identity-status {
-    font-size: 9px;
+    font-size: 12px;
     padding: 14px 22px;
-  }
-  .focus-strip {
-    padding-block: 22px;
-    min-height: auto;
-    position: relative;
-    display: block;
-  }
-  .focus-strip > span:first-child {
-    display: block;
-    font-size: 8px;
-    margin-bottom: 16px;
-  }
-  .focus-strip ul {
-    gap: 13px;
-    font-size: 9px;
-    justify-content: space-between;
-    max-width: 370px;
-  }
-  .focus-strip li + li:before {
-    margin-right: 13px;
-  }
-  .strip-star {
-    position: absolute;
-    right: 0;
-    top: 15px;
-    font-size: 22px;
   }
   .section {
     padding-block: 50px;
@@ -1958,7 +1851,7 @@ main:focus {
     margin-bottom: 27px;
   }
   .section-heading .eyebrow {
-    font-size: 9px;
+    font-size: 12px;
     margin-bottom: 14px;
   }
   .section-heading h2 {
@@ -1967,11 +1860,11 @@ main:focus {
   }
   .section-heading > .text-link {
     margin-top: 0;
-    font-size: 11px;
+    font-size: 12px;
   }
   .section-intro {
     margin-top: -10px;
-    font-size: 13px;
+    font-size: 16px;
     line-height: 1.85;
     margin-bottom: 26px;
   }
@@ -1997,14 +1890,14 @@ main:focus {
     font-size: 24px;
   }
   .project-body p {
-    font-size: 12px;
+    font-size: 16px;
   }
   .card-topline .small-label {
     display: inline;
-    font-size: 7px;
+    font-size: 12px;
   }
   .tags > span {
-    font-size: 8px;
+    font-size: 12px;
   }
   .work-note {
     padding: 29px;
@@ -2017,7 +1910,7 @@ main:focus {
     max-width: 280px;
   }
   .work-note p {
-    font-size: 13px;
+    font-size: 16px;
   }
   .work-note .text-link {
     margin-top: 24px;
@@ -2040,15 +1933,15 @@ main:focus {
   }
   .skill-card p,
   .home .skill-card p {
-    font-size: 13px;
+    font-size: 16px;
     margin-bottom: 22px;
   }
   .skill-card .tags > span,
   .home .skill-card .tags > span {
-    font-size: 9px;
+    font-size: 12px;
   }
   .home .skill-card .small-label {
-    font-size: 8px;
+    font-size: 12px;
   }
   .journey-preview {
     grid-template-columns: 1fr;
@@ -2059,7 +1952,7 @@ main:focus {
   }
   .journey-preview .section-intro {
     max-width: none;
-    font-size: 14px;
+    font-size: 16px;
     margin-bottom: 20px;
   }
   .timeline > li {
@@ -2069,7 +1962,7 @@ main:focus {
     font-size: 21px;
   }
   .timeline .prose {
-    font-size: 13px;
+    font-size: 16px;
   }
   .articles-grid {
     grid-template-columns: 1fr;
@@ -2082,7 +1975,7 @@ main:focus {
     font-size: 26px;
   }
   .article-meta {
-    font-size: 9px;
+    font-size: 12px;
     gap: 13px;
   }
   .article-meta > span + span:before {
@@ -2099,7 +1992,7 @@ main:focus {
     font-size: 29px;
   }
   .contact-band p:not(.eyebrow) {
-    font-size: 12px;
+    font-size: 16px;
     line-height: 1.8;
   }
   .contact-band .button {
@@ -2113,17 +2006,17 @@ main:focus {
     font-size: 22px;
   }
   .footer-top p {
-    font-size: 10px;
+    font-size: 12px;
   }
   .footer-links {
     margin-top: 25px;
-    font-size: 11px;
+    font-size: 12px;
     gap: 24px;
   }
   .footer-bottom {
     flex-wrap: wrap;
     gap: 12px 22px;
-    font-size: 8px;
+    font-size: 12px;
     padding-block: 20px;
   }
   .footer-bottom p:nth-child(2) {
@@ -2143,11 +2036,11 @@ main:focus {
     line-height: 1.13;
   }
   .page-heading .eyebrow {
-    font-size: 9px;
+    font-size: 12px;
     margin-bottom: 22px;
   }
   .page-intro {
-    font-size: 14px;
+    font-size: 16px;
     margin-top: 23px;
     line-height: 1.9;
   }
@@ -2161,7 +2054,7 @@ main:focus {
     gap: 36px;
   }
   .about-aside {
-    display: none;
+    max-width: 360px;
   }
   .prose-large {
     font-size: 16px;
@@ -2194,25 +2087,25 @@ main:focus {
     font-size: 22px;
   }
   .journey-layout .timeline .prose {
-    font-size: 14px;
+    font-size: 16px;
   }
   .project-filters {
     gap: 10px;
     padding-bottom: 23px;
   }
   .project-filters select {
-    font-size: 11px;
+    font-size: 12px;
     padding: 10px 9px;
   }
   .results-line {
-    font-size: 11px;
+    font-size: 12px;
   }
   .results-line .small-label {
-    font-size: 7px;
+    font-size: 12px;
   }
   .editorial-note {
     margin-top: 28px;
-    font-size: 11px;
+    font-size: 12px;
     line-height: 1.85;
   }
   .empty-state {
@@ -2222,7 +2115,7 @@ main:focus {
     font-size: 27px;
   }
   .empty-state p {
-    font-size: 13px;
+    font-size: 16px;
   }
   .contact-card {
     padding: 28px;
@@ -2232,10 +2125,10 @@ main:focus {
     line-height: 1.16;
   }
   .article-layout .page-heading .article-meta {
-    font-size: 10px;
+    font-size: 12px;
   }
   .breadcrumb {
-    font-size: 11px;
+    font-size: 12px;
     margin-bottom: 35px;
   }
   .not-found {
@@ -2245,7 +2138,7 @@ main:focus {
     font-size: 44px;
   }
   .not-found > p:not(.eyebrow) {
-    font-size: 14px;
+    font-size: 16px;
   }
   .alignleft,
   .alignright {
@@ -2277,7 +2170,373 @@ main:focus {
   width: 48px;
   height: 48px;
 }
-.strip-star .icon {
-  width: 24px;
-  height: 24px;
+
+/* Readable, compact opening; the same content remains visible at every width. */
+.hero {
+  padding-block: 72px;
+}
+.hero h1 {
+  font-size: clamp(42px, 4.6vw, 64px);
+  letter-spacing: -0.04em;
+  line-height: 1.12;
+}
+.hero .eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.09em;
+}
+.hero-intro {
+  max-width: 62ch;
+  font-size: 17px;
+  line-height: 1.75;
+  text-wrap: pretty;
+}
+.hero-actions .button {
+  font-size: 15px;
+}
+.brand-name small {
+  letter-spacing: 0.07em;
+}
+.identity-top {
+  flex-wrap: wrap;
+  gap: 6px 14px;
+}
+.identity-top .small-label,
+.edition {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+}
+.focus-section .section-intro {
+  max-width: 70ch;
+}
+.skill-card .small-label {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+}
+.skill-icon {
+  margin-bottom: 18px;
+}
+.card-topline {
+  flex-wrap: wrap;
+}
+.text-link,
+.button,
+.project-filters select,
+.project-filters input,
+.page-numbers {
+  min-height: 44px;
+}
+.text-link,
+.project-filters select,
+.project-filters input {
+  font-size: 15px;
+}
+.page-numbers {
+  display: inline-grid;
+  place-items: center;
+  min-width: 44px;
+}
+.footer-links a,
+.footer-bottom > a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.prose {
+  overflow-wrap: anywhere;
+}
+.hero-copy,
+.identity-bottom,
+.identity-bottom > div,
+.section-heading > div {
+  min-width: 0;
+}
+.hero h1,
+.identity-name,
+.card-title,
+.page-heading h1,
+.contact-email {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 30px;
+    padding-block: 44px;
+  }
+  .hero-copy {
+    max-width: 680px;
+  }
+  .hero h1 {
+    font-size: clamp(38px, 6.2vw, 54px);
+    max-width: 680px;
+    margin-bottom: 22px;
+  }
+  .hero-intro {
+    font-size: 17px;
+    line-height: 1.7;
+  }
+  .hero-actions {
+    margin-top: 24px;
+    gap: 12px;
+  }
+  .hero-actions .button {
+    padding: 12px 20px;
+    gap: 10px;
+    min-height: 48px;
+  }
+  .identity-card {
+    display: grid;
+    grid-template-columns: 160px minmax(0, 1fr);
+    width: 100%;
+    max-width: 680px;
+  }
+  .identity-top {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    padding: 14px 20px 4px;
+  }
+  .identity-art {
+    height: 132px;
+  }
+  .monogram {
+    font-size: 72px;
+  }
+  .orbit-one {
+    width: 100px;
+    height: 100px;
+  }
+  .orbit-one:after {
+    inset: -12px;
+  }
+  .orbit-two {
+    width: 132px;
+    height: 70px;
+  }
+  .orbit-dot {
+    top: 23px;
+    left: calc(50% + 35px);
+    width: 6px;
+    height: 6px;
+  }
+  .art-corner-one {
+    left: 12px;
+    top: 10px;
+  }
+  .art-corner-two {
+    right: 12px;
+    bottom: 10px;
+  }
+  .identity-bottom {
+    padding: 14px 20px 14px 8px;
+    gap: 12px;
+  }
+  .identity-name {
+    font-size: 26px;
+  }
+  .identity-description {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+  .identity-status {
+    grid-column: 1 / -1;
+    padding: 11px 20px;
+    font-size: 12px;
+    letter-spacing: 0;
+  }
+  .nav-links a,
+  .has-js .menu-toggle {
+    font-size: 14px;
+    min-height: 44px;
+  }
+  .section-heading > .text-link,
+  .contact-band .button {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    width: calc(100% - 40px);
+  }
+  .header-inner {
+    padding-block: 12px;
+  }
+  .brand-name {
+    font-size: 13px;
+  }
+  .brand-name small {
+    font-size: 12px;
+    letter-spacing: 0;
+    margin-top: 4px;
+  }
+  .hero {
+    gap: 24px;
+    padding-block: 32px;
+  }
+  .hero .eyebrow {
+    font-size: 12px;
+    line-height: 1.5;
+    margin-bottom: 18px;
+    letter-spacing: 0.06em;
+  }
+  .hero h1 {
+    font-size: clamp(32px, 8.6vw, 43px);
+    line-height: 1.14;
+    letter-spacing: -0.035em;
+    margin-bottom: 20px;
+  }
+  .hero-intro {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+  .hero-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 22px;
+  }
+  .hero-actions .button {
+    font-size: 14px;
+    padding: 12px 8px;
+    gap: 8px;
+    min-height: 48px;
+  }
+  .hero-actions .icon {
+    width: 16px;
+    height: 16px;
+  }
+  .identity-card {
+    grid-template-columns: 104px minmax(0, 1fr);
+  }
+  .identity-top {
+    padding: 12px 16px 4px;
+    gap: 4px 12px;
+  }
+  .identity-top .small-label,
+  .edition {
+    letter-spacing: 0.02em;
+  }
+  .identity-art {
+    height: 112px;
+  }
+  .monogram {
+    font-size: 56px;
+  }
+  .orbit-one {
+    width: 76px;
+    height: 76px;
+  }
+  .orbit-two {
+    width: 100px;
+    height: 54px;
+  }
+  .orbit-dot {
+    top: 23px;
+    left: calc(50% + 26px);
+  }
+  .identity-bottom {
+    padding: 12px 16px 12px 8px;
+    display: block;
+  }
+  .identity-name {
+    font-size: 21px;
+    line-height: 1.3;
+  }
+  .identity-description {
+    font-size: 13px;
+    margin-top: 6px;
+  }
+  .identity-star .icon {
+    width: 18px;
+    height: 18px;
+    margin-top: 8px;
+  }
+  .identity-status {
+    padding: 10px 16px;
+    font-size: 12px;
+  }
+  .section {
+    padding-block: 40px;
+  }
+  .section-heading {
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .section-heading h2 {
+    font-size: 30px;
+    max-width: 100%;
+  }
+  .section-intro {
+    margin-top: 0;
+    margin-bottom: 24px;
+    line-height: 1.7;
+  }
+  .skill-card,
+  .home .skill-card,
+  .article-card,
+  .work-note,
+  .project-body {
+    padding: 22px;
+  }
+  .skill-card .small-label,
+  .home .skill-card .small-label {
+    font-size: 12px;
+  }
+  .skill-card p,
+  .home .skill-card p {
+    font-size: 16px;
+    margin-bottom: 18px;
+  }
+  .tags > span,
+  .skill-card .tags > span,
+  .home .skill-card .tags > span {
+    font-size: 12px;
+    padding: 5px 8px;
+  }
+  .page-heading h1 {
+    font-size: clamp(32px, 8.5vw, 42px);
+  }
+  .article-layout .page-heading h1 {
+    font-size: clamp(32px, 8.5vw, 38px);
+  }
+  .page-intro,
+  .timeline .prose,
+  .journey-layout .timeline .prose,
+  .journey-preview .section-intro,
+  .contact-band p:not(.eyebrow) {
+    font-size: 16px;
+    line-height: 1.75;
+  }
+  .project-filters select,
+  .project-filters input {
+    font-size: 16px;
+    min-width: 0;
+  }
+  .results-line {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .footer-top p,
+  .editorial-note {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 359px) {
+  .container {
+    width: calc(100% - 32px);
+  }
+  .hero-actions {
+    grid-template-columns: 1fr;
+  }
+  .brand {
+    gap: 8px;
+  }
+  .has-js .menu-toggle {
+    gap: 8px;
+    padding-inline: 10px;
+  }
 }

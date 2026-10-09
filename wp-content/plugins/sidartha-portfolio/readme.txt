@@ -2,7 +2,7 @@
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.1
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -12,6 +12,8 @@ groups. Native posts remain the blog. Settings > Portfolio profile controls
 the public identity, photograph, public email, social links, footer sentence,
 and article collection. No custom login, public custom API, external service,
 or production build step is required.
+Version 1.0.1 adds editable homepage learning-section copy and refines the default
+introduction. Saved owner content takes precedence; no records are migrated.
 
 == Installation ==
 1. Upload the plugin ZIP in Plugins > Add New > Upload Plugin; activate it.

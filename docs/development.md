@@ -224,3 +224,14 @@ For browser QA, this cloud environment provides Python Playwright and
 using the managed proxy/network policy. It is injected only during local tests,
 not loaded by the theme. A `--no-sandbox` browser flag is confined to headless QA
 inside the isolated container; it does not change WordPress or production settings.
+
+The browser suite now covers all seven public pages at 320, 360, 390, 430, 768,
+1024 and 1440 pixels. It also measures the compact hero, text sizes and touch targets,
+and checks keyboard navigation at each mobile/tablet width. New screenshot evidence
+for the refinement is under `docs/previews/task4/`.
+
+Native integration writes run in a database transaction and are rolled back even
+on test failure. The suite refuses non-InnoDB tables and persistent object caches
+to avoid unsafe rollback assumptions. Ordinary HTTP authentication still updates
+WordPress session/transient metadata; it never changes passwords or account roles.
+Test-only transactions are not part of the theme or plugin packages.

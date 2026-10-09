@@ -9,8 +9,8 @@ ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / 'dist'
 OUTPUT.mkdir(exist_ok=True)
 PACKAGES = {
-    'sidartha-1.0.0.zip': ROOT / 'wp-content/themes/sidartha',
-    'sidartha-portfolio-1.0.0.zip': ROOT / 'wp-content/plugins/sidartha-portfolio',
+    'sidartha-1.0.1.zip': ROOT / 'wp-content/themes/sidartha',
+    'sidartha-portfolio-1.0.1.zip': ROOT / 'wp-content/plugins/sidartha-portfolio',
 }
 allowed = {'.php', '.css', '.js', '.json', '.txt', '.png'}
 manifest = {}

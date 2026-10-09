@@ -26,11 +26,13 @@ is part of the current workflow.
 - [Content editing guide](docs/content-editing.md)
 - [Security review](docs/website-security.md)
 - [Verification and visual QA](docs/website-test-report.md)
+- [Task 4 responsive refinement and new screenshots](docs/design-refinement-task4.md)
 - [Future deployment, owner inputs, and rollback](docs/website-deployment.md)
 
 Production uses standard WordPress/PHP and static assets. Node.js, Docker, and
 browser-testing tools are development tools only; they are not production requirements.
 The theme/plugin ZIPs contain no development configuration, credentials, or database.
+The current review packages are version **1.0.1**; prior 1.0.0 artifacts are retained.
 
 ## Local development checks
 

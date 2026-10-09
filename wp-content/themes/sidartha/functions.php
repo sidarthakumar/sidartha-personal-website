@@ -25,7 +25,7 @@ function skp_profile( $key ) {
 	if ( function_exists( '\Sidartha\Portfolio\profile' ) ) {
 		return \Sidartha\Portfolio\profile( $key );
 	}
-	$defaults = array( 'name' => get_bloginfo( 'name' ), 'headline' => get_bloginfo( 'name' ), 'introduction' => get_bloginfo( 'description' ), 'footer' => get_bloginfo( 'description' ) );
+	$defaults = array( 'name' => get_bloginfo( 'name' ), 'headline' => get_bloginfo( 'name' ), 'introduction' => get_bloginfo( 'description' ), 'footer' => get_bloginfo( 'description' ), 'focus_label' => __( 'Currently exploring', 'sidartha' ), 'focus_heading' => __( 'Learning areas', 'sidartha' ) );
 	return $defaults[ $key ] ?? '';
 }
 

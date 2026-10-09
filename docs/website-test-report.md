@@ -1,5 +1,8 @@
 # Website verification — October 9, 2026
 
+This is the historical Task 3 report. See [Task 4 refinement evidence](design-refinement-task4.md)
+for the current 1.0.1 design, expanded viewport checks, and newly captured screenshots.
+
 Scope: the existing isolated WordPress sandbox at `http://127.0.0.1:8080`.
 No production/Hostinger access, deployment, merge, account reset, or data deletion.
 The feature branch starts from `main` including merged environment PR #1.

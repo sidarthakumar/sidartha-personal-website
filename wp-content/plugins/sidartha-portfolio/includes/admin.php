@@ -29,10 +29,10 @@ function settings_page() {
 		<?php settings_fields( 'skp_profile_group' ); ?>
 		<table class="form-table" role="presentation">
 		<?php
-		$fields = array( 'name' => 'Public name', 'eyebrow' => 'Introduction label', 'headline' => 'Homepage headline (two lines supported)', 'introduction' => 'Homepage introduction', 'public_email' => 'Public contact email (optional)', 'github' => 'Public GitHub profile URL (optional)', 'linkedin' => 'Public LinkedIn URL (optional)', 'footer' => 'Footer sentence' );
+		$fields = array( 'name' => 'Public name', 'eyebrow' => 'Introduction label', 'headline' => 'Homepage headline (two lines supported)', 'introduction' => 'Homepage introduction', 'focus_label' => 'Homepage learning section label', 'focus_heading' => 'Homepage learning section heading', 'focus_introduction' => 'Homepage learning section introduction', 'public_email' => 'Public contact email (optional)', 'github' => 'Public GitHub profile URL (optional)', 'linkedin' => 'Public LinkedIn URL (optional)', 'footer' => 'Footer sentence' );
 		foreach ( $fields as $key => $label ) : ?>
 			<tr><th scope="row"><label for="skp-<?php echo esc_attr( $key ); ?>"><?php echo esc_html( $label ); ?></label></th><td>
-			<?php if ( in_array( $key, array( 'headline', 'introduction', 'footer' ), true ) ) : ?>
+			<?php if ( in_array( $key, array( 'headline', 'introduction', 'focus_introduction', 'footer' ), true ) ) : ?>
 				<textarea class="large-text" rows="3" id="skp-<?php echo esc_attr( $key ); ?>" name="skp_profile[<?php echo esc_attr( $key ); ?>]"><?php echo esc_textarea( profile( $key ) ); ?></textarea>
 			<?php else : ?>
 				<input class="regular-text" id="skp-<?php echo esc_attr( $key ); ?>" name="skp_profile[<?php echo esc_attr( $key ); ?>]" type="<?php echo esc_attr( 'public_email' === $key ? 'email' : ( in_array( $key, array( 'github', 'linkedin' ), true ) ? 'url' : 'text' ) ); ?>" value="<?php echo esc_attr( profile( $key ) ); ?>">

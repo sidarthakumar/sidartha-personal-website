@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Sidartha Portfolio
  * Description: Portable projects, learning milestones, skills, and public profile settings.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Requires at least: 6.6
  * Requires PHP: 8.1
  * Author: Sidartha Kumar
@@ -14,7 +14,7 @@ namespace Sidartha\Portfolio;
 
 defined( 'ABSPATH' ) || exit;
 
-const VERSION = '1.0.0';
+const VERSION = '1.0.1';
 
 /** Register native content types. WordPress supplies REST authorization and editing. */
 function register_content() {
@@ -153,8 +153,11 @@ add_action( 'save_post', __NAMESPACE__ . '\\save_meta' );
 function profile( $key ) {
 	$defaults = array(
 		'name' => 'Sidartha Kumar', 'eyebrow' => 'An independent journey · October 2026',
-		'headline' => "Thoughtful technology.\nOne project at a time.",
-		'introduction' => "I'm Sidartha Kumar, beginning my independent journey in technology. I'm learning to build thoughtful interfaces, useful software, and the systems that connect them.",
+		'headline' => "Building practical technology.\nOne project at a time.",
+		'introduction' => "I'm Sidartha Kumar, beginning my independent journey in information technology. I'm exploring full-stack development, backend systems, APIs, AI applications, cloud infrastructure, and secure software engineering—building practical projects and documenting what I learn along the way.",
+		'focus_label' => 'Currently exploring',
+		'focus_heading' => 'Learning across the world of IT.',
+		'focus_introduction' => 'From responsive interfaces and data engineering fundamentals to business platforms and secure delivery: these are learning goals, developed through practical projects, not claims of mastery.',
 		'public_email' => '', 'github' => '', 'linkedin' => '', 'photo' => 0,
 		'footer' => 'Learning with curiosity. Building with care.', 'article_category' => 0,
 	);
@@ -171,7 +174,7 @@ function sanitize_profile( $input ) {
 	if ( ! is_array( $input ) ) {
 		return $output;
 	}
-	foreach ( array( 'name', 'eyebrow', 'headline', 'introduction', 'footer' ) as $key ) {
+	foreach ( array( 'name', 'eyebrow', 'headline', 'introduction', 'focus_label', 'focus_heading', 'focus_introduction', 'footer' ) as $key ) {
 		if ( isset( $input[ $key ] ) && is_string( $input[ $key ] ) ) {
 			$output[ $key ] = substr( sanitize_textarea_field( $input[ $key ] ), 0, 1200 );
 		}

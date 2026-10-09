@@ -1,12 +1,12 @@
 {
-  "sidartha-1.0.0.zip": {
-    "sha256": "6959344d393196751b11313865e1a7507ec54932715d88abfcd70eb7c50b3522",
-    "bytes": 205840,
+  "sidartha-1.0.1.zip": {
+    "sha256": "046d7a15f44d62b34ab0da9ffe497b3b52eb3474f2db504fd3264065571c4922",
+    "bytes": 230926,
     "files": 22
   },
-  "sidartha-portfolio-1.0.0.zip": {
-    "sha256": "de7882ff81700d86f8961601d4dbee6a8da241e8722856d8c0a33f15d0988e4b",
-    "bytes": 19962,
+  "sidartha-portfolio-1.0.1.zip": {
+    "sha256": "69bc43b2c491e461bd8affd6080fb72aa13545a6338f3a660b6d73e02d430d4e",
+    "bytes": 20275,
     "files": 6
   }
 }
