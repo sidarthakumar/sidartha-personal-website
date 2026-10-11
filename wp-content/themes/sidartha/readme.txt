@@ -2,7 +2,7 @@
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.1
-Version: 1.0.1
+Version: 1.0.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -24,6 +24,9 @@ Settings > Portfolio profile and the editorial note in the Home page editor.
 Articles: normal WordPress Posts; reading time estimates use 200 words/minute.
 
 SECURITY / PRIVACY
+Version 1.0.2 prefers the published page selected in Settings > Privacy for the
+footer Privacy Policy link. A published starter policy is a legacy fallback;
+drafts are never linked. No privacy settings or content are migrated.
 Only use an intentionally public contact email, distinct from the WordPress
 administrator email. No contact form or email-delivery service is included.
 The contact link opens the visitor's email application. No delivery claim is made.

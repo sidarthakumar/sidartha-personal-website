@@ -32,7 +32,9 @@ is part of the current workflow.
 Production uses standard WordPress/PHP and static assets. Node.js, Docker, and
 browser-testing tools are development tools only; they are not production requirements.
 The theme/plugin ZIPs contain no development configuration, credentials, or database.
-The current review packages are version **1.0.1**; prior 1.0.0 artifacts are retained.
+The current review packages are theme **1.0.2** and companion plugin **1.0.1**;
+prior packages are retained. The theme prefers the published policy selected in
+Settings → Privacy. See [privacy footer verification](docs/privacy-footer-fix.md).
 
 ## Local development checks
 

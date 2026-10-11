@@ -6,17 +6,24 @@ production credentials to Codex or store them in this repository.
 
 ## Deliverables and compatibility
 
-- `dist/sidartha-1.0.1.zip`: the complete custom theme with responsive refinements.
+- `dist/sidartha-1.0.2.zip`: the complete custom theme with the official privacy-link fix.
 - `dist/sidartha-portfolio-1.0.1.zip`: projects, milestones, skill groups, public
   profile controls, and optional starter drafts.
 - `dist/manifest.json`: package SHA-256 checksums, sizes, and file counts.
 - All initial copy is included in the plugin's non-destructive starter importer.
   No development database export is part of either ZIP.
 
-Use the **1.0.1** packages for this review. The previous 1.0.0 ZIPs remain unchanged
-as historical Task 3 artifacts; `manifest.json` describes the current 1.0.1 build.
+Use theme **1.0.2** with the unchanged companion plugin **1.0.1** for this review.
+Earlier ZIPs remain unchanged as historical artifacts; `manifest.json` describes
+the current theme/plugin build.
 No content import or database migration is required to apply this refinement to
 an existing installation. Saved owner copy always overrides plugin defaults.
+
+For an existing installation, this privacy fix requires only the new theme ZIP;
+do not rerun the starter importer. The footer prioritizes the published page
+selected in **Settings → Privacy**. A published plugin starter policy is a legacy
+fallback; if neither is published, it shows non-clickable review text. The theme
+does not publish a policy or change the selected page.
 
 Requires WordPress 6.6+ and PHP 8.1+. Tested locally on WordPress 7.1.3, PHP 8.3.35,
 and MariaDB 11.4.13. Confirm supported WordPress/PHP versions in the actual Hostinger

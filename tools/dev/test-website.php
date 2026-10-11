@@ -130,5 +130,42 @@ $filtered = new WP_Query( array_merge( $filter_args, array( 'meta_query' => skp_
 skp_test( 1 === $filtered->post_count, 'Planned filter discovers planned project content' );
 $_POST = array();
 skp_test( 'draft' === get_post_status( $fixture ), 'QA fixture remains unpublished; no existing content removed' );
+
+// Render the actual footer against synthetic pages inside the rollback transaction.
+// No owner policy, saved setting, or published content is changed persistently.
+$official_policy = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => 'Local QA official privacy policy', 'post_content' => 'Synthetic privacy test fixture.' ), true );
+$legacy_policy = wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => 'Local QA legacy privacy policy', 'post_content' => 'Synthetic privacy test fixture.' ), true );
+if ( is_wp_error( $official_policy ) || is_wp_error( $legacy_policy ) ) {
+	WP_CLI::error( 'FAIL: privacy regression fixture creation' );
+}
+update_option( 'skp_pages', array( 'privacy' => $legacy_policy ) );
+$render_footer = function () {
+	ob_start();
+	get_template_part( 'footer' );
+	return ob_get_clean();
+};
+$policy_link = function ( $page_id ) {
+	return '<a href="' . esc_url( get_permalink( $page_id ) ) . '">Privacy Policy</a>';
+};
+update_option( 'wp_page_for_privacy_policy', $official_policy );
+$footer = $render_footer();
+skp_test( false !== strpos( $footer, $policy_link( $official_policy ) ) && false === strpos( $footer, $policy_link( $legacy_policy ) ), 'footer prioritizes the official published policy over the published starter policy' );
+wp_update_post( array( 'ID' => $legacy_policy, 'post_status' => 'draft' ) );
+$footer = $render_footer();
+skp_test( false !== strpos( $footer, $policy_link( $official_policy ) ) && false === strpos( $footer, 'Privacy notice under review' ), 'official Privacy Policy link works while the starter policy remains a draft' );
+wp_update_post( array( 'ID' => $official_policy, 'post_status' => 'draft' ) );
+$footer = $render_footer();
+skp_test( false !== strpos( $footer, 'Privacy notice under review' ) && false === strpos( $footer, $policy_link( $official_policy ) ) && false === strpos( $footer, $policy_link( $legacy_policy ) ), 'selected draft and starter draft are never linked' );
+update_option( 'wp_page_for_privacy_policy', 0 );
+$footer = $render_footer();
+skp_test( false !== strpos( $footer, 'Privacy notice under review' ) && false === strpos( $footer, $policy_link( $legacy_policy ) ), 'no official policy plus a starter draft keeps the safe text fallback' );
+wp_update_post( array( 'ID' => $legacy_policy, 'post_status' => 'publish' ) );
+$footer = $render_footer();
+skp_test( false !== strpos( $footer, $policy_link( $legacy_policy ) ), 'published starter policy remains a clickable legacy fallback' );
+update_option( 'skp_pages', array() );
+update_option( 'wp_page_for_privacy_policy', $official_policy );
+wp_update_post( array( 'ID' => $official_policy, 'post_status' => 'publish' ) );
+$footer = $render_footer();
+skp_test( false !== strpos( $footer, $policy_link( $official_policy ) ), 'official published policy works without a plugin privacy mapping' );
 skp_test( false !== $wpdb->query( 'ROLLBACK' ), 'integration test writes rolled back without altering existing records' );
 WP_CLI::success( $checks . ' website integration/security checks passed.' );

@@ -98,8 +98,11 @@ link opens the visitor's email application; delivery has not been tested or prom
 
 The privacy page is intentionally a draft. Review actual hosting logs, retention,
 cookies, enabled WordPress features, email arrangements, and any future integrations
-before publishing it. Once that specific starter page is published, the footer links
-to it automatically. Also select the approved notice in WordPress Settings → Privacy.
+before publishing it. Select the approved published notice in WordPress Settings →
+Privacy. Theme 1.0.2 prefers that official policy in the footer, even when it is a
+different page from the plugin's original draft. A published starter policy remains
+a fallback; unpublished pages are never linked. The theme never publishes content
+or changes the Settings → Privacy selection automatically.
 
 ## Safe editing and preservation
 

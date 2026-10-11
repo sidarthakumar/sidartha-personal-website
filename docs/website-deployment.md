@@ -24,6 +24,28 @@ trusted credential manager/hosting interface, outside Git, chat, and Codex promp
 
 ## Release procedure after explicit approval
 
+### Privacy footer patch: theme 1.0.2
+
+The current theme-only patch is `dist/sidartha-1.0.2.zip`; the companion plugin
+remains 1.0.1. After separately approving an installation, verify the new theme
+checksum in `dist/manifest.json`, back up the existing theme, and update only the
+theme on the approved staging site. Preserve all content and existing settings;
+no database migration or starter import is needed.
+
+Confirm the policy chosen in Settings → Privacy is published, then check the
+footer's **Privacy Policy** link against that page. The official WordPress policy
+takes priority over the plugin's original page. If the selected page is unpublished
+or unset, only a published starter policy can act as the fallback; otherwise the
+footer displays **Privacy notice under review** without a policy link. Check desktop
+and phone layouts and clear only the approved site's asset/page cache if needed.
+
+Rollback for this patch means restoring the prior reviewed theme 1.0.1. It requires
+no database restore and does not change privacy settings. The prior theme may again
+ignore an independently selected official policy. No installation, deployment,
+publishing, or production connection is performed by the development task.
+
+### Full release checklist
+
 1. Verify the PR/release commit, checksums in `dist/manifest.json`, package contents,
    and a clean secret scan. Merge/release only with the owner's separate approval.
 2. Take and verify a private backup of the actual target database, uploads, active
