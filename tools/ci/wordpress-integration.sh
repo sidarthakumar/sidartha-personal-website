@@ -2,6 +2,7 @@
 # GitHub-hosted CI only. Never operates on the saved development/hosting environment.
 set -euo pipefail
 set +x
+exec 3>&1
 [[ ${GITHUB_ACTIONS:-} == true && ${RUNNER_ENVIRONMENT:-} == github-hosted ]]
 [[ -n ${RUNNER_TEMP:-} && -n ${GITHUB_WORKSPACE:-} ]]
 ci_root=$(mktemp -d "$RUNNER_TEMP/sidartha-ci.XXXXXXXX")
@@ -20,9 +21,9 @@ trap cleanup EXIT
 ci_stage='dependency retrieval'
 report_failure() {
   local ci_status=$?
-  echo "FAIL: synthetic CI stage $ci_stage (exit $ci_status)"
+  echo "FAIL: synthetic CI stage $ci_stage (exit $ci_status)" >&3
   if [[ -f $ci_root/setup.log ]] && grep -Eqi '(mysql|mariadb).*not found' "$ci_root/setup.log"; then
-    echo 'FAIL: WP-CLI configuration dependency mysql/mariadb executable unavailable'
+    echo 'FAIL: WP-CLI configuration dependency mysql/mariadb executable unavailable' >&3
   fi
   exit "$ci_status"
 }
@@ -39,9 +40,9 @@ printf 'MARIADB_DATABASE=wordpress_ci\nMARIADB_USER=wordpress_ci\nMARIADB_PASSWO
 docker pull "$ci_cli_image" >/dev/null
 docker pull "$ci_db_image" >/dev/null
 ci_uid="$(id -u):$(id -g)"
-docker run --rm --user "$ci_uid" --volume "$ci_root/site:/var/www/html" \
+docker run --rm --entrypoint wp --user "$ci_uid" --volume "$ci_root/site:/var/www/html" \
   "$ci_cli_image" core download --version=6.6.2 --locale=en_US --quiet
-docker run --rm --user "$ci_uid" --volume "$ci_root/site:/var/www/html" \
+docker run --rm --entrypoint wp --user "$ci_uid" --volume "$ci_root/site:/var/www/html" \
   "$ci_cli_image" core verify-checksums --version=6.6.2 --locale=en_US
 cp -R "$GITHUB_WORKSPACE/wp-content/themes/sidartha" "$ci_root/site/wp-content/themes/"
 cp -R "$GITHUB_WORKSPACE/wp-content/plugins/sidartha-portfolio" "$ci_root/site/wp-content/plugins/"
@@ -58,7 +59,7 @@ for ((ci_attempt=0; ci_attempt<60; ci_attempt++)); do
 done
 [[ $ci_ready == true ]] || { echo 'FAIL: synthetic database startup'; exit 1; }
 wp_ci() {
-  docker run --rm -i --user "$ci_uid" --network "$ci_network" \
+  docker run --rm -i --entrypoint wp --user "$ci_uid" --network "$ci_network" \
     --volume "$ci_root/site:/var/www/html" \
     --volume "$GITHUB_WORKSPACE/tools:/ci-tools:ro" \
     "$ci_cli_image" "$@"
