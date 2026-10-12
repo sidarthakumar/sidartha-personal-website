@@ -17,6 +17,16 @@ cleanup() {
   rm -rf -- "$ci_root"
 }
 trap cleanup EXIT
+ci_stage='dependency retrieval'
+report_failure() {
+  local ci_status=$?
+  echo "FAIL: synthetic CI stage $ci_stage (exit $ci_status)"
+  if [[ -f $ci_root/setup.log ]] && grep -Eqi '(mysql|mariadb).*not found' "$ci_root/setup.log"; then
+    echo 'FAIL: WP-CLI configuration dependency mysql/mariadb executable unavailable'
+  fi
+  exit "$ci_status"
+}
+trap report_failure ERR
 mkdir "$ci_root/site"
 chmod 700 "$ci_root"
 ci_password=$(openssl rand -hex 32)
@@ -54,19 +64,23 @@ wp_ci() {
     "$ci_cli_image" "$@"
 }
 # Salts and configuration are generated privately, not fetched from WordPress.org.
+ci_stage='configuration creation'
 wp_ci config create --dbname=wordpress_ci --dbuser=wordpress_ci --dbpass="$ci_password" \
-  --dbhost=ci-db --skip-salts --extra-php > "$ci_root/setup.log" 2>&1 <<'PHP'
+  --dbhost=ci-db --skip-check --skip-salts --extra-php > "$ci_root/setup.log" 2>&1 <<'PHP'
 define( 'WP_ENVIRONMENT_TYPE', 'local' );
 define( 'WP_HTTP_BLOCK_EXTERNAL', true );
 define( 'DISABLE_WP_CRON', true );
 define( 'AUTOMATIC_UPDATER_DISABLED', true );
 PHP
+ci_stage='private salt generation'
 for ci_key in AUTH_KEY SECURE_AUTH_KEY LOGGED_IN_KEY NONCE_KEY AUTH_SALT SECURE_AUTH_SALT LOGGED_IN_SALT NONCE_SALT; do
   wp_ci config set "$ci_key" "$(openssl rand -hex 32)" >> "$ci_root/setup.log" 2>&1
 done
+ci_stage='synthetic WordPress installation'
 wp_ci core install --url=http://127.0.0.1:8080 --title='Synthetic CI site' \
   --admin_user=ci-admin --admin_password="$ci_admin_password" \
   --admin_email=ci@example.invalid --skip-email >> "$ci_root/setup.log" 2>&1
+ci_stage='synthetic component activation and seed'
 wp_ci plugin activate sidartha-portfolio >> "$ci_root/setup.log" 2>&1
 wp_ci theme activate sidartha >> "$ci_root/setup.log" 2>&1
 wp_ci --user=ci-admin skp seed --publish-local >> "$ci_root/setup.log" 2>&1
