@@ -177,6 +177,20 @@ add_action( 'pre_get_posts', function ( $query ) {
 add_action( 'wp_head', function () {
 	if ( defined( 'WPSEO_VERSION' ) || defined( 'RANK_MATH_VERSION' ) || defined( 'AIOSEO_VERSION' ) || is_404() || is_search() ) { return; }
 	$description = is_front_page() ? skp_profile( 'introduction' ) : ( is_singular() ? get_the_excerpt( get_queried_object_id() ) : '' );
+	if ( is_home() && ! is_front_page() ) {
+		$posts_page_id = (int) get_option( 'page_for_posts' );
+		$posts_page = $posts_page_id > 0 ? get_post( $posts_page_id ) : null;
+		$description = '';
+		if ( $posts_page instanceof WP_Post && 'page' === $posts_page->post_type && 'publish' === $posts_page->post_status && ! $posts_page->post_password ) {
+			$description = trim( wp_strip_all_tags( strip_shortcodes( $posts_page->post_excerpt ) ) );
+			if ( '' === $description ) {
+				$description = trim( wp_strip_all_tags( strip_shortcodes( $posts_page->post_content ) ) );
+			}
+		}
+		if ( '' === $description ) {
+			$description = __( "Explore Sidartha Kumar's insights on software development, AI, cloud technology, and learning through practical projects and ongoing experiments.", 'sidartha' );
+		}
+	}
 	if ( $description ) { echo '<meta name="description" content="' . esc_attr( wp_trim_words( wp_strip_all_tags( $description ), 30, '…' ) ) . '">' . "\n"; }
 	if ( is_front_page() ) {
 		$data = array( '@context' => 'https://schema.org', '@type' => 'Person', 'name' => skp_profile( 'name' ), 'url' => home_url( '/' ) );
