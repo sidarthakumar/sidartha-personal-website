@@ -2,7 +2,7 @@
 Requires at least: 6.6
 Tested up to: 7.1
 Requires PHP: 8.1
-Version: 1.0.2
+Version: 1.0.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,3 +43,8 @@ docs/website-security.md and docs/website-test-report.md for the complete handof
 Version 1.0.1 refines mobile typography and the compact identity card, exposes all
 editable learning groups on the homepage, and clarifies the two main actions.
 See docs/design-refinement-task4.md for new screenshots and responsive test evidence.
+
+Version 1.0.3 adds the Insights posts-index meta description, preferring the
+configured published Posts page excerpt/content with a public fallback. Existing
+homepage/singular descriptions and detected SEO-plugin ownership are preserved.
+No content, settings, layout or plugin migration is required.

@@ -6,14 +6,14 @@ production credentials to Codex or store them in this repository.
 
 ## Deliverables and compatibility
 
-- `dist/sidartha-1.0.2.zip`: the complete custom theme with the official privacy-link fix.
+- `dist/sidartha-1.0.3.zip`: the complete custom theme with the privacy-link and Insights SEO fixes.
 - `dist/sidartha-portfolio-1.0.1.zip`: projects, milestones, skill groups, public
   profile controls, and optional starter drafts.
 - `dist/manifest.json`: package SHA-256 checksums, sizes, and file counts.
 - All initial copy is included in the plugin's non-destructive starter importer.
   No development database export is part of either ZIP.
 
-Use theme **1.0.2** with the unchanged companion plugin **1.0.1** for this review.
+Use theme **1.0.3** with the unchanged companion plugin **1.0.1** for this review.
 Earlier ZIPs remain unchanged as historical artifacts; `manifest.json` describes
 the current theme/plugin build.
 No content import or database migration is required to apply this refinement to
@@ -88,3 +88,10 @@ Inspect the resulting ZIP member lists and scan them before publishing a release
 The theme screenshot is a real local frontend capture. The decorative monogram,
 browser illustration, CSS, and SVG icons are original source, not a fabricated
 portrait or a client screenshot. Licenses are included in each package.
+
+Theme 1.0.3 is a theme-only staging candidate. The companion plugin remains 1.0.1.
+After separate installation approval, verify the checksum and the Insights HTML
+contains one description; confirm homepage/post descriptions and privacy links.
+Do not import content or change SEO/privacy settings. Roll back only the theme
+to the retained 1.0.2 ZIP if needed; this restores the missing Insights-description
+behavior without reverting content, settings or the privacy-footer fix.

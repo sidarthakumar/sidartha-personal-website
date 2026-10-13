@@ -32,7 +32,7 @@ is part of the current workflow.
 Production uses standard WordPress/PHP and static assets. Node.js, Docker, and
 browser-testing tools are development tools only; they are not production requirements.
 The theme/plugin ZIPs contain no development configuration, credentials, or database.
-The current review packages are theme **1.0.2** and companion plugin **1.0.1**;
+The current review packages are theme **1.0.3** and companion plugin **1.0.1**;
 prior packages are retained. The theme prefers the published policy selected in
 Settings → Privacy. See [privacy footer verification](docs/privacy-footer-fix.md).
 
@@ -51,3 +51,6 @@ git diff --check
 These commands assume the saved local runtime has been started and the theme/plugin
 activated as described in the development guide. Browser checks use local Chromium
 and a temporary copy of axe-core; neither is delivered to website visitors.
+
+Theme 1.0.3 is prepared for separately approved staging testing. See
+[package and rollback notes](docs/theme-1.0.3.md). No installation is automatic.

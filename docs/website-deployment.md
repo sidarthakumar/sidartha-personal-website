@@ -24,9 +24,26 @@ trusted credential manager/hosting interface, outside Git, chat, and Codex promp
 
 ## Release procedure after explicit approval
 
-### Privacy footer patch: theme 1.0.2
+### Current staging candidate: theme 1.0.3
 
-The current theme-only patch is `dist/sidartha-1.0.2.zip`; the companion plugin
+Package: `dist/sidartha-1.0.3.zip`; checksum/size/count: `dist/manifest.json`.
+The companion plugin remains 1.0.1. This package adds the tested Insights SEO
+fix to the existing 1.0.2 theme. Preparation does not authorize installation.
+After explicit staging approval, back up the target theme privately, install only
+the theme, and verify one Insights description plus unchanged homepage/post
+metadata, official privacy link and responsive layout. An active detected SEO
+plugin must continue to own metadata. Preserve URLs, indexing and saved content.
+No import, database migration or settings update is needed.
+
+Code rollback: restore the retained `dist/sidartha-1.0.2.zip` theme only. The
+Insights description fix will be absent again; the privacy correction remains.
+Do not disable/change the plugin or restore/reset any database for this patch.
+Staging installation and production deployment each require separate approval.
+See [package verification notes](theme-1.0.3.md).
+
+### Historical privacy footer patch: theme 1.0.2
+
+The historical theme-only patch is `dist/sidartha-1.0.2.zip`; the companion plugin
 remains 1.0.1. After separately approving an installation, verify the new theme
 checksum in `dist/manifest.json`, back up the existing theme, and update only the
 theme on the approved staging site. Preserve all content and existing settings;
