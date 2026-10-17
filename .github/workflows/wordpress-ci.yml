@@ -2,9 +2,9 @@ name: WordPress CI
 
 on:
   push:
-    branches: [codex/personal-wordpress-website]
+    branches: [codex/personal-wordpress-website, codex/automation-foundation-20261017]
   pull_request:
-    branches: [main]
+    branches: [main, codex/personal-wordpress-website]
   workflow_dispatch:
 
 permissions:
