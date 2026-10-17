@@ -2,9 +2,12 @@ name: WordPress CI
 
 on:
   push:
-    branches: [codex/personal-wordpress-website, codex/automation-foundation-20261017]
+    branches: [main, codex/personal-wordpress-website, codex/automation-foundation-20261017]
   pull_request:
     branches: [main, codex/personal-wordpress-website]
+  # Scheduled runs activate only after this workflow reaches the default branch.
+  schedule:
+    - cron: '17 1 * * *' # Daily at 06:47 India time; GitHub may delay execution.
   workflow_dispatch:
 
 permissions:
