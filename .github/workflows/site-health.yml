@@ -1,0 +1,33 @@
+name: Public website health
+
+on:
+  push:
+    branches: [main, codex/personal-wordpress-website]
+    paths: ['tools/ci/site-health.py', '.github/workflows/site-health.yml']
+  pull_request:
+    branches: [main]
+    paths: ['tools/ci/site-health.py', '.github/workflows/site-health.yml']
+  schedule:
+    - cron: '43 */6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: public-health-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  health:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          persist-credentials: false
+      - name: Check health-check failure paths offline
+        run: python3 tools/ci/site-health.py --self-test
+      - name: Read-only public checks on authorized owner domains
+        if: github.event_name != 'pull_request'
+        run: python3 tools/ci/site-health.py
