@@ -1,0 +1,44 @@
+[
+  {
+    "width": 320,
+    "cardHeight": 427,
+    "nextSectionTop": 1244,
+    "heroParagraph": 14,
+    "overflow": false
+  },
+  {
+    "width": 360,
+    "cardHeight": 427,
+    "nextSectionTop": 1165,
+    "heroParagraph": 14,
+    "overflow": false
+  },
+  {
+    "width": 390,
+    "cardHeight": 427,
+    "nextSectionTop": 1166,
+    "heroParagraph": 14,
+    "overflow": false
+  },
+  {
+    "width": 430,
+    "cardHeight": 427,
+    "nextSectionTop": 1158,
+    "heroParagraph": 14,
+    "overflow": false
+  },
+  {
+    "width": 768,
+    "cardHeight": 395,
+    "nextSectionTop": 745,
+    "heroParagraph": 13,
+    "overflow": false
+  },
+  {
+    "width": 1440,
+    "cardHeight": 476,
+    "nextSectionTop": 853,
+    "heroParagraph": 16,
+    "overflow": false
+  }
+]

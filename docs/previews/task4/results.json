@@ -1,0 +1,353 @@
+{
+  "pages": [
+    {
+      "path": "/",
+      "width": 1440,
+      "status": "PASS",
+      "seconds": 1.194
+    },
+    {
+      "path": "/about/",
+      "width": 1440,
+      "status": "PASS",
+      "seconds": 0.945
+    },
+    {
+      "path": "/skills/",
+      "width": 1440,
+      "status": "PASS",
+      "seconds": 0.922
+    },
+    {
+      "path": "/projects/",
+      "width": 1440,
+      "status": "PASS",
+      "seconds": 0.947
+    },
+    {
+      "path": "/journey/",
+      "width": 1440,
+      "status": "PASS",
+      "seconds": 0.915
+    },
+    {
+      "path": "/insights/",
+      "width": 1440,
+      "status": "PASS",
+      "seconds": 1.004
+    },
+    {
+      "path": "/contact/",
+      "width": 1440,
+      "status": "PASS",
+      "seconds": 1.011
+    },
+    {
+      "path": "/",
+      "width": 1024,
+      "status": "PASS",
+      "seconds": 1.154
+    },
+    {
+      "path": "/about/",
+      "width": 1024,
+      "status": "PASS",
+      "seconds": 0.938
+    },
+    {
+      "path": "/skills/",
+      "width": 1024,
+      "status": "PASS",
+      "seconds": 1.025
+    },
+    {
+      "path": "/projects/",
+      "width": 1024,
+      "status": "PASS",
+      "seconds": 1.015
+    },
+    {
+      "path": "/journey/",
+      "width": 1024,
+      "status": "PASS",
+      "seconds": 0.907
+    },
+    {
+      "path": "/insights/",
+      "width": 1024,
+      "status": "PASS",
+      "seconds": 0.778
+    },
+    {
+      "path": "/contact/",
+      "width": 1024,
+      "status": "PASS",
+      "seconds": 0.785
+    },
+    {
+      "path": "/",
+      "width": 768,
+      "status": "PASS",
+      "seconds": 0.896
+    },
+    {
+      "path": "/about/",
+      "width": 768,
+      "status": "PASS",
+      "seconds": 0.812
+    },
+    {
+      "path": "/skills/",
+      "width": 768,
+      "status": "PASS",
+      "seconds": 1.266
+    },
+    {
+      "path": "/projects/",
+      "width": 768,
+      "status": "PASS",
+      "seconds": 0.867
+    },
+    {
+      "path": "/journey/",
+      "width": 768,
+      "status": "PASS",
+      "seconds": 0.805
+    },
+    {
+      "path": "/insights/",
+      "width": 768,
+      "status": "PASS",
+      "seconds": 0.78
+    },
+    {
+      "path": "/contact/",
+      "width": 768,
+      "status": "PASS",
+      "seconds": 0.805
+    },
+    {
+      "path": "/",
+      "width": 430,
+      "status": "PASS",
+      "seconds": 0.913
+    },
+    {
+      "path": "/about/",
+      "width": 430,
+      "status": "PASS",
+      "seconds": 0.764
+    },
+    {
+      "path": "/skills/",
+      "width": 430,
+      "status": "PASS",
+      "seconds": 0.81
+    },
+    {
+      "path": "/projects/",
+      "width": 430,
+      "status": "PASS",
+      "seconds": 0.787
+    },
+    {
+      "path": "/journey/",
+      "width": 430,
+      "status": "PASS",
+      "seconds": 0.766
+    },
+    {
+      "path": "/insights/",
+      "width": 430,
+      "status": "PASS",
+      "seconds": 0.94
+    },
+    {
+      "path": "/contact/",
+      "width": 430,
+      "status": "PASS",
+      "seconds": 0.793
+    },
+    {
+      "path": "/",
+      "width": 390,
+      "status": "PASS",
+      "seconds": 0.963
+    },
+    {
+      "path": "/about/",
+      "width": 390,
+      "status": "PASS",
+      "seconds": 0.829
+    },
+    {
+      "path": "/skills/",
+      "width": 390,
+      "status": "PASS",
+      "seconds": 0.822
+    },
+    {
+      "path": "/projects/",
+      "width": 390,
+      "status": "PASS",
+      "seconds": 0.855
+    },
+    {
+      "path": "/journey/",
+      "width": 390,
+      "status": "PASS",
+      "seconds": 0.801
+    },
+    {
+      "path": "/insights/",
+      "width": 390,
+      "status": "PASS",
+      "seconds": 0.852
+    },
+    {
+      "path": "/contact/",
+      "width": 390,
+      "status": "PASS",
+      "seconds": 0.772
+    },
+    {
+      "path": "/",
+      "width": 360,
+      "status": "PASS",
+      "seconds": 0.89
+    },
+    {
+      "path": "/about/",
+      "width": 360,
+      "status": "PASS",
+      "seconds": 0.81
+    },
+    {
+      "path": "/skills/",
+      "width": 360,
+      "status": "PASS",
+      "seconds": 0.839
+    },
+    {
+      "path": "/projects/",
+      "width": 360,
+      "status": "PASS",
+      "seconds": 0.831
+    },
+    {
+      "path": "/journey/",
+      "width": 360,
+      "status": "PASS",
+      "seconds": 0.867
+    },
+    {
+      "path": "/insights/",
+      "width": 360,
+      "status": "PASS",
+      "seconds": 0.824
+    },
+    {
+      "path": "/contact/",
+      "width": 360,
+      "status": "PASS",
+      "seconds": 0.906
+    },
+    {
+      "path": "/",
+      "width": 320,
+      "status": "PASS",
+      "seconds": 1.158
+    },
+    {
+      "path": "/about/",
+      "width": 320,
+      "status": "PASS",
+      "seconds": 0.927
+    },
+    {
+      "path": "/skills/",
+      "width": 320,
+      "status": "PASS",
+      "seconds": 1.063
+    },
+    {
+      "path": "/projects/",
+      "width": 320,
+      "status": "PASS",
+      "seconds": 0.972
+    },
+    {
+      "path": "/journey/",
+      "width": 320,
+      "status": "PASS",
+      "seconds": 0.871
+    },
+    {
+      "path": "/insights/",
+      "width": 320,
+      "status": "PASS",
+      "seconds": 0.976
+    },
+    {
+      "path": "/contact/",
+      "width": 320,
+      "status": "PASS",
+      "seconds": 0.849
+    }
+  ],
+  "hero_metrics": [
+    {
+      "width": 1440,
+      "card_height": 489,
+      "next_section_top": 726,
+      "intro_font": 17,
+      "smallest_label": 12
+    },
+    {
+      "width": 1024,
+      "card_height": 467,
+      "next_section_top": 704,
+      "intro_font": 17,
+      "smallest_label": 12
+    },
+    {
+      "width": 768,
+      "card_height": 216,
+      "next_section_top": 775,
+      "intro_font": 17,
+      "smallest_label": 12
+    },
+    {
+      "width": 430,
+      "card_height": 192,
+      "next_section_top": 770,
+      "intro_font": 16,
+      "smallest_label": 12
+    },
+    {
+      "width": 390,
+      "card_height": 192,
+      "next_section_top": 813,
+      "intro_font": 16,
+      "smallest_label": 12
+    },
+    {
+      "width": 360,
+      "card_height": 204,
+      "next_section_top": 820,
+      "intro_font": 16,
+      "smallest_label": 12
+    },
+    {
+      "width": 320,
+      "card_height": 226,
+      "next_section_top": 981,
+      "intro_font": 16,
+      "smallest_label": 12
+    }
+  ],
+  "javascript_errors": 0,
+  "external_requests": 0,
+  "interactions": "PASS",
+  "no_javascript_navigation": "PASS"
+}

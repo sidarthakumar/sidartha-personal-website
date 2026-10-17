@@ -85,6 +85,12 @@ class AuthenticationTests(unittest.TestCase):
 
 
 class BoundaryTests(unittest.TestCase):
+    def test_homepage_requires_the_current_configured_site_title(self):
+        with patch.object(smoke, 'compose', return_value='Sidartha Kumar'):
+            smoke.homepage(FakeClient([html('<title>Sidartha Kumar</title>')]))
+            with self.assertRaisesRegex(smoke.SmokeFailure, 'homepage title missing'):
+                smoke.homepage(FakeClient([html('<title>Unexpected site</title>')]))
+
     def test_missing_external_http_isolation_fails(self):
         import json
         result = {'query': '1', 'server': '11.4.13-MariaDB', 'local': True,
