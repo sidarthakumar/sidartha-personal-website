@@ -11,7 +11,7 @@ This branch adds offline verification and a downloadable CI package artifact for
 
 ## Continuous integration
 
-On the current feature branch or a PR targeting `main`, GitHub Actions runs PHP syntax/security/SEO regression and synthetic WordPress integration. Only after all jobs pass will the release verification job:
+On pushes to `main` or the configured feature branches, a PR targeting `main` or the website feature branch, a manual dispatch, or the daily schedule, GitHub Actions runs PHP syntax/security/SEO regression and synthetic WordPress integration. Only after all jobs pass will the release verification job:
 
 1. Cross-check component versions against package names and manifest.
 2. Verify every ZIP SHA-256, size and file count.
@@ -42,3 +42,9 @@ python3 tools/ci/verify-release.py
 ```
 
 Check the relevant GitHub Actions run, download the verified artifact and use the documented staging-review process before any live installation. The workflow definition alone is not evidence of a successful CI run or deployed release.
+
+## Daily regression schedule
+
+The workflow declares a daily run at 01:17 UTC (06:47 Asia/Kolkata). GitHub scheduled workflows execute only from the default branch, so this schedule is **not active while this change remains in the unmerged website PR**. After the reviewed workflow reaches `main`, both main-branch pushes and the daily schedule run the same regression, isolated integration and package-integrity gates. GitHub may delay scheduled runs; this is not an uptime SLA.
+
+These checks use synthetic disposable WordPress data and do not contact production or password-protected staging. They monitor repository regressions, not live availability, TLS expiry, backup freshness or hosting security. Existing GitHub Actions notification preferences determine who receives failure notifications; no email address, webhook or new notification service is configured by this change. Verified artifacts retain the existing 14-day expiry.
