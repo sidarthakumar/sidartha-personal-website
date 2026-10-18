@@ -2,7 +2,7 @@
 
 Astro generates this portfolio from Markdown content, structured profile data and reusable templates. GitHub tracks content and code; the delivery workflow checks the public output before Hostinger publishing.
 
-**Migration status:** the Astro portfolio is published on Hostinger. Native GitHub delivery and a recovery publication of the previous checked tree were verified on 18 October 2026. Private WordPress file and database backups are retained outside Git. Repository visibility and the proposed persistent AGENTS.md amendment remain separate approval items.
+**Migration status:** the Astro portfolio is published on Hostinger. Native GitHub delivery and a recovery publication of the previous checked tree were verified on 18 October 2026. Private WordPress file and database backups are retained outside Git. The repository is public. The proposed persistent AGENTS.md amendment remains a separate approval item.
 
 ## Local development
 

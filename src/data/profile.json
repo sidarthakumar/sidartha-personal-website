@@ -57,9 +57,9 @@
   "milestones": [
     {
       "date": "October 2026",
-      "kind": "BUILDING",
+      "kind": "PUBLISHED",
       "title": "A portfolio that is easier to maintain",
-      "description": "Moving this portfolio from WordPress to a static site, with content and code in GitHub and an automated publishing workflow."
+      "description": "Published this portfolio as a lightweight static site, with content and code in GitHub and verified automatic delivery to Hostinger."
     },
     {
       "date": "Current focus",
