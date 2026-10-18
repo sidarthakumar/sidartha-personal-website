@@ -1,0 +1,107 @@
+name: Portfolio checks and delivery
+
+on:
+  push:
+    branches: [main, codex/astro-portfolio]
+  pull_request:
+    branches: [main]
+  release:
+    types: [published]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: portfolio-${{ github.event.pull_request.number || 'production' }}
+  cancel-in-progress: false
+
+jobs:
+  validate:
+    name: Build, content and security
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    outputs:
+      revision: ${{ steps.revision.outputs.sha }}
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ github.event_name == 'release' && 'main' || github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '24'
+          cache: npm
+      - name: Install locked dependencies without package lifecycle scripts
+        run: npm ci --ignore-scripts --no-fund --no-audit
+      - name: Security and content failure-path tests
+        run: npm test
+      - name: Read selected public release notes for the build
+        if: github.event_name != 'pull_request'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node tools/portfolio/sync-releases.mjs
+      - name: Scan source without printing matched values
+        run: npm run check:secrets
+      - name: Identify the exact source revision
+        id: revision
+        run: |
+          revision="$(git rev-parse HEAD)"
+          echo "sha=$revision" >> "$GITHUB_OUTPUT"
+          printf '%s\n' "$revision" > public/revision.txt
+      - name: Build and inspect the public output
+        run: npm run build
+      - name: Verify drafts do not reach pages, lists, sitemap or feed
+        run: node tools/portfolio/check-draft-boundary.mjs
+      - name: Recheck the final output
+        run: python3 tools/portfolio/check-output.py
+      - name: Upload only the verified public website
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: portfolio-public-site
+          path: site-dist/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 14
+      - name: Retain the public release input used by this build
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+        with:
+          name: portfolio-release-input
+          path: src/data/releases.json
+          retention-days: 14
+
+  deploy:
+    name: Publish verified files to Hostinger branch
+    needs: validate
+    if: vars.HOSTINGER_DEPLOY_ENABLED == 'true' && github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || github.event_name == 'release')
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    environment: production
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
+        with:
+          ref: ${{ needs.validate.outputs.revision }}
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '24'
+      - uses: actions/download-artifact@018cc2cf5baa6db3ef3c5f8a56943fffe632ef53 # v6
+        with:
+          name: portfolio-public-site
+          path: site-dist/
+      - name: Publish only the checked artifact to the deployment branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SITE_REVISION: ${{ needs.validate.outputs.revision }}
+        run: node tools/portfolio/publish-artifact.mjs
+      - name: Wait for Hostinger and verify the published revision
+        env:
+          SITE_REVISION: ${{ needs.validate.outputs.revision }}
+        run: node tools/portfolio/verify-delivery.mjs
+      - name: Restore previous public tree when verification fails
+        if: failure()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node tools/portfolio/rollback-artifact.mjs

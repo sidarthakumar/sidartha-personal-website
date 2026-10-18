@@ -1,0 +1,27 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { displayDate, readingTime } from '../lib/content';
+interface Props {
+  article: CollectionEntry<'articles'>;
+  heading?: 'h2' | 'h3';
+}
+const { article, heading = 'h3' } = Astro.props;
+const Heading = heading;
+---
+
+<article class="article-card">
+  <p class="metadata">
+    <time datetime={article.data.date.toISOString()}>
+      {displayDate(article.data.date)}
+    </time>{' '}
+    · {readingTime(article.body)} min read
+  </p>
+  <Heading class="card-title">
+    <a href={`/${article.id}/`}>{article.data.title}</a>
+  </Heading>
+  <p>{article.data.description}</p>
+  <a class="text-link" href={`/${article.id}/`}>
+    Read the note <span aria-hidden="true">↗</span>
+    <span class="sr-only">: {article.data.title}</span>
+  </a>
+</article>

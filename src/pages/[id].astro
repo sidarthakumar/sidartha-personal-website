@@ -1,0 +1,47 @@
+---
+import { render } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+import { articles, displayDate, readingTime } from '../lib/content';
+export async function getStaticPaths() {
+  return (await articles()).map((article) => ({
+    params: { id: article.id },
+    props: { article },
+  }));
+}
+const { article } = Astro.props;
+const { Content } = await render(article);
+---
+
+<Layout
+  title={article.data.title}
+  description={article.data.description}
+  article
+  published={article.data.date}
+  updated={article.data.updated}
+>
+  <article class="container detail-page">
+    <a class="text-link back-link" href="/insights/">
+      ← All insights
+    </a>
+    <p class="eyebrow">FROM THE NOTEBOOK / {article.data.category}</p>
+    <h1>{article.data.title}</h1>
+    <div class="detail-meta">
+      <time datetime={article.data.date.toISOString()}>
+        {displayDate(article.data.date)}
+      </time>
+      <span>{readingTime(article.body)} min read</span>
+      <a href="/about/">Sidartha Kumar</a>
+    </div>
+    {article.data.updated && (
+      <p class="updated-note">
+        Updated{' '}
+        <time datetime={article.data.updated.toISOString()}>
+          {displayDate(article.data.updated)}
+        </time>
+      </p>
+    )}
+    <div class="prose article-body">
+      <Content />
+    </div>
+  </article>
+</Layout>

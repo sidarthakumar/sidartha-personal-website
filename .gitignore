@@ -112,3 +112,10 @@ Desktop.ini
 *.temp
 .idea/
 .vscode/
+
+# Astro generated output and local verification state.
+site-dist/
+.astro/
+.artifacts/
+.npm-cache/
+/public/revision.txt

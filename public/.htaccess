@@ -1,0 +1,41 @@
+# Public static output only. Source, databases, credentials and backups are never deployed.
+Options -Indexes
+DirectoryIndex index.html
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+# ACME challenges remain available to the hosting provider.
+RewriteRule ^\.well-known/ - [L]
+RewriteRule (^|/)\. - [F,L]
+RewriteRule ^(?:wp-admin|wp-login\.php|xmlrpc\.php|wp-json|wp-content|wp-includes)(?:/|$) - [R=404,L]
+RewriteCond %{HTTPS} !=on [OR]
+RewriteCond %{HTTP_HOST} !^sidarthakumar\.com$ [NC]
+RewriteRule ^ https://sidarthakumar.com%{REQUEST_URI} [R=301,L,NE]
+RewriteRule ^(?:category/insights|category/insights/|insights/feed|insights/feed/)$ /insights/ [R=301,L]
+RewriteRule ^(?:privacy|privacy/)$ /privacy-policy/ [R=301,L]
+RewriteRule ^(?:wp-sitemap\.xml|sitemap_index\.xml)$ /sitemap.xml [R=301,L]
+RewriteRule ^feed/?$ /feed.xml [R=301,L]
+</IfModule>
+
+<FilesMatch "(^\.|\.(?:env|ini|log|sql|sqlite|bak|old|key|pem|php|sh|py|ya?ml)$)">
+  Require all denied
+</FilesMatch>
+
+<IfModule mod_headers.c>
+Header always set X-Content-Type-Options "nosniff"
+Header always set X-Frame-Options "DENY"
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+Header always set Permissions-Policy "camera=(), microphone=(), geolocation=(), payment=()"
+Header always set Content-Security-Policy "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; frame-ancestors 'none'; form-action 'none'; upgrade-insecure-requests"
+Header always set Strict-Transport-Security "max-age=31536000"
+<FilesMatch "\.(?:html|xml|txt)$">
+Header set Cache-Control "public, max-age=0, must-revalidate"
+</FilesMatch>
+</IfModule>
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType text/css "access plus 7 days"
+ExpiresByType application/javascript "access plus 1 day"
+ExpiresByType image/svg+xml "access plus 7 days"
+</IfModule>
