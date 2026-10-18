@@ -22,13 +22,13 @@ The preview binds to 127.0.0.1. The Astro wrapper disables telemetry. Build outp
 
 ## Updating content
 
-| Change | Source |
-| --- | --- |
-| Profile, experience, learning, milestones | src/data/profile.json |
-| Articles | src/content/articles/*.md |
-| Projects | src/content/projects/*.md |
-| Public release milestones | src/data/releases.json, generated from this repository |
-| Design | src/layouts/, src/components/, src/styles/ |
+| Change                                    | Source                                                 |
+| ----------------------------------------- | ------------------------------------------------------ |
+| Profile, experience, learning, milestones | src/data/profile.json                                  |
+| Articles                                  | src/content/articles/*.md                              |
+| Projects                                  | src/content/projects/*.md                              |
+| Public release milestones                 | src/data/releases.json, generated from this repository |
+| Design                                    | src/layouts/, src/components/, src/styles/             |
 
 See [content instructions](docs/portfolio-content.md) and [deployment/recovery](docs/portfolio-deployment.md). Drafts stay off the website, lists, sitemap and RSS, but **draft source in a public repository is public**. Confidential material belongs outside it.
 
@@ -36,7 +36,7 @@ See [content instructions](docs/portfolio-content.md) and [deployment/recovery](
 
 [Portfolio checks and delivery](.github/workflows/portfolio.yml) runs on PRs, main pushes and published releases. Only this repository supplies release updates. Drafts, prereleases and private repositories are excluded. Each trusted build reads published releases using read-only GitHub access. Release notes remain sourced in GitHub; their derived summary input is retained with the build artifact. No feed process writes to main or bypasses its checks.
 
-Hostinger deployment is gated by HOSTINGER_DEPLOY_ENABLED and protected production secrets. The workflow’s existence is not evidence of connection or successful deployment.
+Hostinger deploys only the generated `hostinger-live` branch through its GitHub app, limited to this repository. The checked workflow uses a temporary GitHub token to publish that branch; hosting passwords and SSH keys are not needed in GitHub. Publication remains gated by `HOSTINGER_DEPLOY_ENABLED`. The workflow’s existence is not evidence of a successful live deployment.
 
 ## Historical WordPress source
 

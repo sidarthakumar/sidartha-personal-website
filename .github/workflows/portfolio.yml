@@ -71,12 +71,14 @@ jobs:
           retention-days: 14
 
   deploy:
-    name: Publish verified website to Hostinger
+    name: Publish verified files to Hostinger branch
     needs: validate
     if: vars.HOSTINGER_DEPLOY_ENABLED == 'true' && github.event_name != 'pull_request' && (github.ref == 'refs/heads/main' || github.event_name == 'release')
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     environment: production
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
@@ -89,14 +91,17 @@ jobs:
         with:
           name: portfolio-public-site
           path: site-dist/
-      - name: Deploy with pinned host identity and verify; roll back code on failure
+      - name: Publish only the checked artifact to the deployment branch
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SITE_REVISION: ${{ needs.validate.outputs.revision }}
-          HOSTINGER_SSH_HOST: ${{ secrets.HOSTINGER_SSH_HOST }}
-          HOSTINGER_SSH_PORT: ${{ secrets.HOSTINGER_SSH_PORT }}
-          HOSTINGER_SSH_USER: ${{ secrets.HOSTINGER_SSH_USER }}
-          HOSTINGER_SSH_KEY: ${{ secrets.HOSTINGER_SSH_KEY }}
-          HOSTINGER_KNOWN_HOSTS: ${{ secrets.HOSTINGER_KNOWN_HOSTS }}
-          HOSTINGER_SITE_ROOT: ${{ secrets.HOSTINGER_SITE_ROOT }}
-        run: python3 tools/portfolio/deploy.py
+        run: node tools/portfolio/publish-artifact.mjs
+      - name: Wait for Hostinger and verify the published revision
+        env:
+          SITE_REVISION: ${{ needs.validate.outputs.revision }}
+        run: node tools/portfolio/verify-delivery.mjs
+      - name: Restore previous public tree when verification fails
+        if: failure()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node tools/portfolio/rollback-artifact.mjs
