@@ -30,7 +30,7 @@ Set `HOSTINGER_DEPLOY_ENABLED=true` only after initial deployment, backup/recove
 
 ## Verification and recovery
 
-After publication, the workflow waits up to five minutes for the exact revision.txt marker, then checks live HTTPS pages, security headers, metadata, sitemap, feed and protected paths. A failed check keeps the workflow failed. It requests a code-only rollback by creating a new deployment-branch commit with the previous complete tree, only if the failed publication still owns that branch. It never force-writes over a newer publication. The initial artifact has no previous static tree and cannot automatically restore WordPress.
+After publication, the workflow waits up to five minutes for a unique delivery.txt marker for the workflow run and attempt, then verifies the source revision.txt marker. This distinguishes release-note builds of the same source revision. It then checks live HTTPS pages, security headers, metadata, sitemap, feed and protected paths. A failed check keeps the workflow failed. It requests a code-only rollback by creating a new deployment-branch commit with the previous complete tree, only if the failed publication still owns that branch. It never force-writes over a newer publication. The initial artifact has no previous static tree and cannot automatically restore WordPress.
 
 Native Hostinger deployment is asynchronous. A rollback request does not prove that Hostinger has applied it; inspect deployment history and the live revision. This method does not promise an atomic server switch or zero downtime. Previous Git trees remain available. Restore a known good public tree with a new commit and redeploy if provider delivery fails. Never restore the old database automatically.
 

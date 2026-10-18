@@ -23,6 +23,7 @@ jobs:
     timeout-minutes: 10
     outputs:
       revision: ${{ steps.revision.outputs.sha }}
+      delivery: ${{ steps.revision.outputs.delivery }}
     steps:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6
         with:
@@ -49,6 +50,9 @@ jobs:
           revision="$(git rev-parse HEAD)"
           echo "sha=$revision" >> "$GITHUB_OUTPUT"
           printf '%s\n' "$revision" > public/revision.txt
+          delivery="${GITHUB_RUN_ID}.${GITHUB_RUN_ATTEMPT}"
+          echo "delivery=$delivery" >> "$GITHUB_OUTPUT"
+          printf '%s\n' "$delivery" > public/delivery.txt
       - name: Build and inspect the public output
         run: npm run build
       - name: Verify drafts do not reach pages, lists, sitemap or feed
@@ -95,10 +99,12 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SITE_REVISION: ${{ needs.validate.outputs.revision }}
+          SITE_DELIVERY: ${{ needs.validate.outputs.delivery }}
         run: node tools/portfolio/publish-artifact.mjs
       - name: Wait for Hostinger and verify the published revision
         env:
           SITE_REVISION: ${{ needs.validate.outputs.revision }}
+          SITE_DELIVERY: ${{ needs.validate.outputs.delivery }}
         run: node tools/portfolio/verify-delivery.mjs
       - name: Restore previous public tree when verification fails
         if: failure()

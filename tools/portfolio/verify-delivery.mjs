@@ -2,6 +2,9 @@ import { spawnSync } from 'node:child_process';
 import { setTimeout } from 'node:timers/promises';
 
 const revision = process.env.SITE_REVISION;
+const delivery = process.env.SITE_DELIVERY;
+if (!/^[0-9]+\.[0-9]+$/.test(delivery || ''))
+  throw new Error('Invalid expected publication marker.');
 if (!/^[a-f0-9]{40}$/.test(revision || ''))
   throw new Error('Invalid expected revision.');
 const deadline = Date.now() + 5 * 60 * 1000;
@@ -24,12 +27,12 @@ async function matchesRevision(response) {
     }
     chunks.push(Buffer.from(value));
   }
-  return Buffer.concat(chunks).toString().trim() === revision;
+  return Buffer.concat(chunks).toString().trim() === delivery;
 }
 while (Date.now() < deadline) {
   try {
     const response = await fetch(
-      `https://sidarthakumar.com/revision.txt?delivery=${revision}`,
+      `https://sidarthakumar.com/delivery.txt?delivery=${delivery}`,
       {
         redirect: 'error',
         signal: AbortSignal.timeout(10000),
@@ -47,7 +50,7 @@ while (Date.now() < deadline) {
 }
 if (!delivered)
   throw new Error(
-    'Hostinger did not publish the expected revision within five minutes. Inspect deployment history; no success is assumed.',
+    'Hostinger did not publish the expected publication marker within five minutes. Inspect deployment history; no success is assumed.',
   );
 const check = spawnSync(process.execPath, ['tools/portfolio/check-live.mjs'], {
   stdio: 'inherit',
