@@ -10,6 +10,7 @@ import {
 } from './publish-artifact.mjs';
 
 const revision = 'a'.repeat(40);
+const delivery = '123456.1';
 const previous = 'b'.repeat(40);
 const uploaded = 'c'.repeat(40);
 async function artifact(t) {
@@ -26,6 +27,7 @@ async function artifact(t) {
   ])
     await writeFile(path.join(directory, name), 'public fixture');
   await writeFile(path.join(directory, 'revision.txt'), revision);
+  await writeFile(path.join(directory, 'delivery.txt'), delivery);
   return directory;
 }
 
@@ -34,7 +36,7 @@ test('publication rejects secrets, executable files, symlinks and mismatched rev
   for (const name of ['.env', 'wp-config.php']) {
     await writeFile(path.join(directory, name), 'fixture');
     await assert.rejects(
-      collectPublicFiles(directory, revision),
+      collectPublicFiles(directory, revision, delivery),
       /Unexpected artifact/,
     );
     await rm(path.join(directory, name));
@@ -43,10 +45,21 @@ test('publication rejects secrets, executable files, symlinks and mismatched rev
     path.join(directory, 'index.html'),
     path.join(directory, 'linked.html'),
   );
-  await assert.rejects(collectPublicFiles(directory, revision), /symlinks/);
+  await assert.rejects(
+    collectPublicFiles(directory, revision, delivery),
+    /symlinks/,
+  );
   await rm(path.join(directory, 'linked.html'));
   await assert.rejects(
-    collectPublicFiles(directory, previous),
+    collectPublicFiles(directory, revision, '999.1'),
+    /publication marker mismatch/,
+  );
+  await assert.rejects(
+    collectPublicFiles(directory, revision, 'invalid'),
+    /Invalid publication marker/,
+  );
+  await assert.rejects(
+    collectPublicFiles(directory, previous, delivery),
     /revision mismatch/,
   );
 });
@@ -58,6 +71,7 @@ test('outdated source cannot start any publication writes', async (t) => {
     publishArtifact({
       directory,
       revision,
+      delivery,
       request: async (method, endpoint) => {
         calls.push({ method, endpoint });
         return { object: { sha: previous } };
@@ -79,10 +93,15 @@ test('publication replaces the complete public tree and fast-forwards only the d
       return { object: { sha: previous } };
     return { sha: uploaded };
   };
-  const result = await publishArtifact({ directory, revision, request });
+  const result = await publishArtifact({
+    directory,
+    revision,
+    delivery,
+    request,
+  });
   const tree = calls.find((call) => call.endpoint === '/git/trees').body;
   assert.equal('base_tree' in tree, false);
-  assert.equal(tree.tree.length, 6);
+  assert.equal(tree.tree.length, 7);
   assert.deepEqual(
     calls.find((call) => call.endpoint === '/git/commits').body.parents,
     [previous],
@@ -109,6 +128,7 @@ test('a source update during upload leaves the deployment branch untouched', asy
     publishArtifact({
       directory,
       revision,
+      delivery,
       request: async (method, endpoint, body) => {
         calls.push({ method, endpoint, body });
         if (endpoint === '/git/ref/heads/main')

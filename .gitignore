@@ -119,3 +119,5 @@ site-dist/
 .artifacts/
 .npm-cache/
 /public/revision.txt
+
+/public/delivery.txt

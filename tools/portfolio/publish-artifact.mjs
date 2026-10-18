@@ -18,9 +18,11 @@ const extensions = new Set([
   '.woff2',
 ]);
 
-export async function collectPublicFiles(directory, revision) {
+export async function collectPublicFiles(directory, revision, delivery) {
   if (!shaPattern.test(revision || ''))
     throw new Error('Invalid source revision.');
+  if (!/^[0-9]+\.[0-9]+$/.test(delivery || ''))
+    throw new Error('Invalid publication marker.');
   const files = [];
   let bytes = 0;
   async function visit(relative = '') {
@@ -63,6 +65,7 @@ export async function collectPublicFiles(directory, revision) {
     'sitemap.xml',
     'feed.xml',
     'revision.txt',
+    'delivery.txt',
   ]) {
     if (!files.some((file) => file.path === required))
       throw new Error('Required public artifact file is missing.');
@@ -74,6 +77,13 @@ export async function collectPublicFiles(directory, revision) {
       .trim() !== revision
   )
     throw new Error('Artifact revision mismatch.');
+  if (
+    files
+      .find((file) => file.path === 'delivery.txt')
+      .content.toString()
+      .trim() !== delivery
+  )
+    throw new Error('Artifact publication marker mismatch.');
   return files.sort((a, b) => a.path.localeCompare(b.path));
 }
 
@@ -109,8 +119,13 @@ export function githubClient(token) {
   };
 }
 
-export async function publishArtifact({ directory, revision, request }) {
-  const files = await collectPublicFiles(directory, revision);
+export async function publishArtifact({
+  directory,
+  revision,
+  delivery,
+  request,
+}) {
+  const files = await collectPublicFiles(directory, revision, delivery);
   const currentMain = await request('GET', '/git/ref/heads/main');
   if (currentMain.object?.sha !== revision)
     throw new Error('Refusing publication of an outdated main revision.');
@@ -161,6 +176,7 @@ export async function publishArtifact({ directory, revision, request }) {
     commit: commit.sha,
     source: revision,
     files: files.length,
+    delivery,
     previous: previous?.object.sha || null,
   };
 }
@@ -205,6 +221,7 @@ if (
     const result = await publishArtifact({
       directory: 'site-dist',
       revision: process.env.SITE_REVISION,
+      delivery: process.env.SITE_DELIVERY,
       request: githubClient(process.env.GITHUB_TOKEN),
     });
     const { writeFile } = await import('node:fs/promises');
