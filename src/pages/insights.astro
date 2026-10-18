@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHeading from '../components/PageHeading.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import { articles } from '../lib/content';
+const notes = await articles();
+---
+
+<Layout
+  title="Insights & Development Notes | Sidartha Kumar"
+  description="Read Sidartha Kumar’s notes on website development, publishing workflows, practical decisions, and learning full-stack applications and AI automation."
+>
+  <PageHeading
+    eyebrow="ARTICLES / INSIGHTS"
+    title="Notes from the work."
+    description="Questions, decisions, and practical lessons from building and learning. Written when there is something useful to share."
+  />
+  <section class="container section-compact">
+    <div class="articles-grid">
+      {notes.map((article) => (
+        <ArticleCard article={article} heading="h2" />
+      ))}
+    </div>
+    <a class="text-link feed-link" href="/feed.xml">
+      Subscribe by RSS ↗
+    </a>
+  </section>
+</Layout>

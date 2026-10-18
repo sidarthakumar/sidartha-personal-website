@@ -1,0 +1,25 @@
+{
+  "name": "sidartha-personal-website",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.22.0"
+  },
+  "scripts": {
+    "dev": "node tools/portfolio/astro.mjs dev --host 127.0.0.1",
+    "build": "node tools/portfolio/validate-content.mjs && node tools/portfolio/astro.mjs build && node tools/portfolio/check-output.mjs",
+    "preview": "node tools/portfolio/astro.mjs preview --host 127.0.0.1",
+    "test": "node --test tools/portfolio/*.test.mjs",
+    "check:secrets": "python3 tools/portfolio/scan-secrets.py",
+    "check:live": "node tools/portfolio/check-live.mjs",
+    "sync:releases": "node tools/portfolio/sync-releases.mjs"
+  },
+  "dependencies": {
+    "astro": "7.4.0"
+  },
+  "devDependencies": {
+    "prettier": "3.9.10",
+    "prettier-plugin-astro": "1.1.1"
+  }
+}

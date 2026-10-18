@@ -1,0 +1,51 @@
+---
+import { render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import { projects, displayDate } from '../../lib/content';
+export async function getStaticPaths() {
+  return (await projects()).map((project) => ({
+    params: { id: project.id },
+    props: { project },
+  }));
+}
+const { project } = Astro.props;
+const { Content } = await render(project);
+---
+
+<Layout title={project.data.title} description={project.data.description}>
+  <article class="container detail-page">
+    <a class="text-link back-link" href="/projects/">
+      ← All projects
+    </a>
+    <p class="eyebrow">PROJECT / FIELD NOTES</p>
+    <h1>{project.data.title}</h1>
+    <p class="detail-description">{project.data.description}</p>
+    <div class="detail-meta">
+      <span class="status">{project.data.status}</span>
+      <span>Sidartha Kumar</span>
+      <span>
+        Updated {displayDate(project.data.updated || project.data.date)}
+      </span>
+    </div>
+    <ul class="tags">
+      {project.data.technologies.map((tech) => (
+        <li>{tech}</li>
+      ))}
+    </ul>
+    <div class="detail-links">
+      {project.data.repository && (
+        <a class="button button-secondary" href={project.data.repository}>
+          View source on GitHub ↗
+        </a>
+      )}
+      {project.data.demo && (
+        <a class="text-link" href={project.data.demo}>
+          Visit website ↗
+        </a>
+      )}
+    </div>
+    <div class="prose article-body">
+      <Content />
+    </div>
+  </article>
+</Layout>

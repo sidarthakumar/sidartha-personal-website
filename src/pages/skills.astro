@@ -1,0 +1,54 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHeading from '../components/PageHeading.astro';
+import profile from '../data/profile.json';
+---
+
+<Layout
+  title="Skills & Learning | Sidartha Kumar"
+  description="Sidartha Kumar’s background in development, SEO, and testing, alongside current learning in React, Node.js, Python, databases, Cypress, and AI tools."
+>
+  <PageHeading
+    eyebrow="SKILLS & TECHNOLOGIES"
+    title="A practical background. A growing toolkit."
+    description="The experience I bring, and the technologies I’m currently learning and practising."
+  />
+  <section class="container section-compact">
+    <h2 class="subheading">Experience</h2>
+    <div class="experience-grid">
+      {profile.experience.map((item) => (
+        <article class="experience-card">
+          <p class="eyebrow">{item.duration}</p>
+          <h3>{item.area}</h3>
+          <p>{item.description}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+  <section class="container section">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">CURRENTLY LEARNING & PRACTISING</p>
+        <h2>Building the next layer.</h2>
+      </div>
+    </div>
+    <div class="focus-grid three-columns">
+      {profile.learning.map((item, i) => (
+        <article class="focus-card">
+          <span class="focus-index">0{i + 1} / CURRENT FOCUS</span>
+          <h3>{item.title}</h3>
+          <p>{item.description}</p>
+          <ul class="tags">
+            {item.topics.map((topic) => (
+              <li>{topic}</li>
+            ))}
+          </ul>
+        </article>
+      ))}
+    </div>
+    <p class="small-note">
+      Projects and notes will show how these technologies are used as the work
+      develops.
+    </p>
+  </section>
+</Layout>

@@ -1,0 +1,70 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHeading from '../components/PageHeading.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { projects } from '../lib/content';
+const work = await projects();
+const technologies = [
+  ...new Set(work.flatMap((item) => item.data.technologies)),
+].sort();
+---
+
+<Layout
+  title="Projects | Sidartha Kumar’s Development Portfolio"
+  description="Explore Sidartha Kumar’s portfolio projects, with the context, technologies, decisions, source links, and current status behind each piece of work."
+>
+  <PageHeading
+    eyebrow="SELECTED WORK / OPEN NOTEBOOK"
+    title="Ideas, becoming something useful."
+    description="A closer look at what I’m building: the problem, the choices behind the solution, and where the work stands."
+  />
+  <section class="container section-compact">
+    <form class="project-filters" id="project-filters" role="search" hidden>
+      <div>
+        <label for="project-q">Search projects</label>
+        <input
+          id="project-q"
+          name="q"
+          type="search"
+          placeholder="Find a project…"
+        />
+      </div>
+      <div>
+        <label for="project-status">Project status</label>
+        <select id="project-status" name="status">
+          <option value="">All statuses</option>
+          <option>Planned</option>
+          <option>In progress</option>
+          <option>Completed</option>
+        </select>
+      </div>
+      <div>
+        <label for="project-tech">Technology</label>
+        <select id="project-tech" name="tech">
+          <option value="">All technologies</option>
+          {technologies.map((tech) => (
+            <option>{tech}</option>
+          ))}
+        </select>
+      </div>
+      <button class="button button-secondary" type="reset">
+        Clear filters
+      </button>
+    </form>
+    <p class="small-note" id="project-count" aria-live="polite">
+      {work.length} {work.length === 1 ? 'project' : 'projects'}
+    </p>
+    <div class="projects-grid">
+      {work.map((project) => (
+        <ProjectCard project={project} heading="h2" />
+      ))}
+    </div>
+    <p class="empty-state" id="project-empty" hidden>
+      No projects match those filters. Try another search or clear the filters.
+    </p>
+    <p class="small-note">
+      More work will be added here as it becomes available to share.
+    </p>
+  </section>
+  <script is:inline defer src="/scripts/projects.js"></script>
+</Layout>

@@ -1,0 +1,77 @@
+{
+  "name": "Sidartha Kumar",
+  "email": "hello@sidarthakumar.com",
+  "github": "https://github.com/sidarthakumar",
+  "repository": "https://github.com/sidarthakumar/sidartha-personal-website",
+  "title": "Web development, APIs & AI exploration",
+  "introduction": "I’m Sidartha Kumar. My background spans website development, SEO, and software testing. I’m now deepening my work in full-stack applications, APIs, and AI automation—bringing practical experience and a thoughtful approach to what I build next.",
+  "experience": [
+    {
+      "area": "Development",
+      "duration": "5–6 years",
+      "description": "WordPress, business websites, online stores, frontend pages, backend systems, and scripts."
+    },
+    {
+      "area": "SEO",
+      "duration": "4+ years",
+      "description": "Experience working on search visibility alongside website development."
+    },
+    {
+      "area": "Testing",
+      "duration": "6 months",
+      "description": "Experience testing websites and software, with a continuing interest in dependable delivery."
+    }
+  ],
+  "learning": [
+    {
+      "title": "Interfaces & experiences",
+      "description": "Developing responsive interfaces with attention to structure, usability, and accessibility.",
+      "topics": ["HTML / CSS", "JavaScript", "React"]
+    },
+    {
+      "title": "Applications & APIs",
+      "description": "Deepening how I connect interfaces, business logic, and data in full-stack applications.",
+      "topics": ["Node.js", "Backend development", "API design"]
+    },
+    {
+      "title": "Data & databases",
+      "description": "Practising how information is organised, queried, and used in useful applications.",
+      "topics": ["MySQL", "MongoDB", "Excel"]
+    },
+    {
+      "title": "AI & automation",
+      "description": "Exploring Python and AI tools to understand where automation can solve practical problems.",
+      "topics": ["Python", "AI tools", "Automation"]
+    },
+    {
+      "title": "Testing & quality",
+      "description": "Building on my testing experience while learning repeatable browser checks.",
+      "topics": ["Cypress", "Website testing", "Quality assurance"]
+    },
+    {
+      "title": "Search & useful websites",
+      "description": "Connecting my SEO background with clear content, accessible pages, and a maintainable web presence.",
+      "topics": ["SEO", "WordPress", "Website structure"]
+    }
+  ],
+  "milestones": [
+    {
+      "date": "October 2026",
+      "kind": "BUILDING",
+      "title": "A portfolio that is easier to maintain",
+      "description": "Moving this portfolio from WordPress to a static site, with content and code in GitHub and an automated publishing workflow."
+    },
+    {
+      "date": "Current focus",
+      "kind": "LEARNING",
+      "title": "Full-stack applications & AI",
+      "description": "Deepening my work with JavaScript, React, Node.js, databases, Python, and AI tools through practical learning."
+    },
+    {
+      "date": "2009",
+      "kind": "BACKGROUND",
+      "title": "An early interest in work on the web",
+      "description": "My earlier work began in 2009. Over time, my background has included website development, SEO, paid advertising, and testing."
+    }
+  ]
+}

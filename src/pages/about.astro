@@ -1,0 +1,71 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHeading from '../components/PageHeading.astro';
+import profile from '../data/profile.json';
+---
+
+<Layout
+  title="About Sidartha Kumar | Development, SEO & Testing"
+  description="Meet Sidartha Kumar: a development background spanning websites, SEO, and testing, with a current focus on full-stack applications and AI automation."
+>
+  <PageHeading
+    eyebrow="ABOUT / SIDARTHA KUMAR"
+    title="Experience behind me. Curiosity ahead."
+  />
+  <section class="container about-layout">
+    <aside class="about-aside">
+      <span class="about-initials" aria-hidden="true">
+        sk<span>.</span>
+      </span>
+      <p class="eyebrow">THE THREAD THROUGH THE WORK</p>
+      <h2>
+        Make technology
+        <br />
+        useful.
+      </h2>
+      <p>Development, discovery, and the details that make things work.</p>
+      <a class="text-link" href={profile.github}>
+        Find me on GitHub ↗
+      </a>
+    </aside>
+    <div class="prose">
+      <h2>Hi, I’m Sidartha.</h2>
+      <p>{profile.introduction}</p>
+      <p>
+        My earlier work began in 2009. Over time, it has included WordPress
+        sites, business websites, online stores, frontend pages, backend
+        systems, and scripts, alongside work in search visibility and paid
+        advertising.
+      </p>
+      <p>
+        I bring approximately five to six years of development experience, at
+        least four years in SEO, and around six months in testing.
+      </p>
+      <h2>What I’m focused on now</h2>
+      <p>
+        Full-stack applications and APIs are my main development direction. I’m
+        also exploring Python, AI tools, and automation: understanding the
+        problem first, then finding where the technology can help.
+      </p>
+      <p>
+        I’m continuing to learn across React, Node.js, JavaScript, databases,
+        and testing tools. My <a href="/skills/">skills page</a> makes that
+        current learning visible alongside my background.
+      </p>
+      <h2>How I approach the work</h2>
+      <ul>
+        <li>Understand the problem and the people using the solution.</li>
+        <li>Build something useful, then improve it with evidence.</li>
+        <li>Consider usability, search visibility, and testing together.</li>
+        <li>Keep decisions and maintenance understandable.</li>
+      </ul>
+      <h2>What comes next</h2>
+      <p>
+        I’m interested in employment opportunities and freelance projects
+        aligned with my experience and direction. If you have a role, website,
+        application, or a clearly scoped problem to discuss,{' '}
+        <a href="/contact/">let’s talk</a>.
+      </p>
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,28 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Page not found"
+  description="This page could not be found. Explore Sidartha Kumar’s projects, notes, or contact page."
+  noindex
+  contactBand={false}
+>
+  <section class="container not-found">
+    <p class="eyebrow">404 / A SMALL DETOUR</p>
+    <h1>
+      This page has
+      <br />
+      wandered off.
+    </h1>
+    <p>Try the projects or head back to the homepage.</p>
+    <div class="hero-actions">
+      <a class="button button-primary" href="/">
+        Back to home ↗
+      </a>
+      <a class="button button-secondary" href="/projects/">
+        Explore projects
+      </a>
+    </div>
+  </section>
+</Layout>

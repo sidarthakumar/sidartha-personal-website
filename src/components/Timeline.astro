@@ -1,0 +1,19 @@
+---
+import profile from '../data/profile.json';
+interface Props {
+  limit?: number;
+}
+const { limit = profile.milestones.length } = Astro.props;
+---
+
+<ol class="timeline">
+  {profile.milestones.slice(0, limit).map((item) => (
+    <li>
+      <p class="metadata">
+        {item.date} <span>{item.kind}</span>
+      </p>
+      <h3>{item.title}</h3>
+      <p>{item.description}</p>
+    </li>
+  ))}
+</ol>

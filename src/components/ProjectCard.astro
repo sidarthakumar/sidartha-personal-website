@@ -1,0 +1,59 @@
+---
+import type { CollectionEntry } from 'astro:content';
+interface Props {
+  project: CollectionEntry<'projects'>;
+  heading?: 'h2' | 'h3';
+}
+const { project, heading = 'h3' } = Astro.props;
+const Heading = heading;
+---
+
+<article
+  class="project-card"
+  data-project
+  data-title={project.data.title.toLowerCase()}
+  data-status={project.data.status}
+  data-technologies={project.data.technologies.join('|')}
+>
+  <a
+    class="project-visual"
+    href={`/project/${project.id}/`}
+    aria-label={`View ${project.data.title}`}
+  >
+    <div class="visual-toolbar" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+      <small>sidarthakumar.com</small>
+    </div>
+    <div class="visual-body" aria-hidden="true">
+      <span class="visual-monogram">
+        sk<span>.</span>
+      </span>
+      <div class="visual-lines">
+        <b>A space for the work.</b>
+        <span></span>
+        <span></span>
+        <em>
+          IDEA <i>→</i> BUILD <i>→</i> SHARE
+        </em>
+      </div>
+    </div>
+  </a>
+  <div class="project-card-body">
+    <p class="metadata">
+      <span class="status">{project.data.status}</span> PERSONAL PROJECT
+    </p>
+    <Heading class="card-title">
+      <a href={`/project/${project.id}/`}>
+        {project.data.title} <span aria-hidden="true">↗</span>
+      </a>
+    </Heading>
+    <p>{project.data.description}</p>
+    <ul class="tags" aria-label="Technologies">
+      {project.data.technologies.map((tag) => (
+        <li>{tag}</li>
+      ))}
+    </ul>
+  </div>
+</article>

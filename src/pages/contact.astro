@@ -1,0 +1,55 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PageHeading from '../components/PageHeading.astro';
+import profile from '../data/profile.json';
+---
+
+<Layout
+  title="Contact Sidartha Kumar | Roles & Project Inquiries"
+  description="Contact Sidartha Kumar about development roles, freelance website and application projects, or a shared interest in useful technology."
+  contactBand={false}
+>
+  <PageHeading
+    eyebrow="CONTACT / SAY HELLO"
+    title="Good things start with a conversation."
+  />
+  <section class="container contact-layout section-compact">
+    <div class="prose">
+      <p>
+        I’m interested in employment opportunities, freelance projects, and
+        thoughtful conversations about technology. Share what you have in mind
+        and we can explore whether it is a good fit.
+      </p>
+      <h2>For employers</h2>
+      <p>
+        Tell me about the role, the team, and the problems you’re working on. My
+        current focus is full-stack development and APIs, with a growing
+        interest in AI applications and automation.
+      </p>
+      <h2>For project inquiries</h2>
+      <p>
+        A short description of your goal, the current website or application,
+        and any timeline or budget helps start the conversation. We can discuss
+        a scope that fits the work.
+      </p>
+    </div>
+    <aside class="contact-card">
+      <p class="eyebrow">A DIRECT CONNECTION</p>
+      <h2>
+        Let’s keep
+        <br />
+        it personal.
+      </h2>
+      <a class="email-link" href={`mailto:${profile.email}`}>
+        {profile.email} ↗
+      </a>
+      <p>Opens your email application.</p>
+      <div class="contact-social">
+        <span>Find the code & current work</span>
+        <a class="text-link" href={profile.github}>
+          GitHub ↗
+        </a>
+      </div>
+    </aside>
+  </section>
+</Layout>
